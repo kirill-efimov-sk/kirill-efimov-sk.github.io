@@ -1,6 +1,6 @@
 import React, { FC, useMemo, useState } from 'react';
 import { CounterInput } from '../../ui/counterInput';
-import { Button } from '../../../../../shared/defaultButton';
+import { Button } from '../../../../shared/defaultButton';
 
 export interface AddToCartProps {
   count?: number;
