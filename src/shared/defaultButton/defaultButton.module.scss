@@ -1,0 +1,24 @@
+.button {
+  min-height: 35px;
+  padding: 0 15px;
+  border: 1px solid rgb(159, 159, 159);
+  border-radius: 8px;
+  background-color: rgba(241, 241, 241, 0.65);
+  transition: all 0.05s ease;
+  text-align: center;
+  font-size: 18px;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(207, 207, 207, 0.747);
+  }
+
+  &:disabled {
+    cursor: default;
+  }
+
+  &:disabled:hover {
+    background-color: rgba(241, 241, 241, 0.65);
+  }
+}
