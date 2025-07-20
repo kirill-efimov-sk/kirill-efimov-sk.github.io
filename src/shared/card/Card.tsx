@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import styles from './card.module.scss';
-
 import { BaseCardProps, CardCategoryProps, BaseCardDateProps, CardImageProps } from './card.types';
 
 type CardProps = BaseCardProps & CardCategoryProps & BaseCardDateProps & CardImageProps;

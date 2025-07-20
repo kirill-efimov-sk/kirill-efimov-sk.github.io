@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Card } from '../../../shared/card';
-import { AddToCart } from '../cart/buttons/addToCard';
+import { AddToCart } from '../../cart/buttons/addToCart';
 import { BaseCardProps, CardImageProps } from 'src/shared/card/card.types';
 
 export interface ProductCardProps extends BaseCardProps, Required<CardImageProps> {}

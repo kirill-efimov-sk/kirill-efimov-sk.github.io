@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Button } from '../../../../../shared/defaultButton';
+import { Button } from '../../../../shared/defaultButton';
 import styles from './counterInput.module.scss';
 
 export interface CounterInputProps {

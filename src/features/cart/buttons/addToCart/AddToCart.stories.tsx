@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { AddToCart, AddToCartProps } from './AddToCart';
 
 const meta: Meta<typeof AddToCart> = {
-  title: 'Feature/Product/Cart/Add',
+  title: 'Feature/Cart/Add',
   component: AddToCart,
   argTypes: {
     count: { type: 'number' },
