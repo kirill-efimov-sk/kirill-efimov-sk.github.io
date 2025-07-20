@@ -1,0 +1,16 @@
+.logo {
+  width: 75px;
+  height: 75px;
+  transition: all 0.3s ease;
+  align-content: center;
+  margin: 8px 15px 17px 15px;
+  font-size: 50px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+
+  &:hover {
+    transform: scale(1.4);
+    opacity: 0.9;
+  }
+}
