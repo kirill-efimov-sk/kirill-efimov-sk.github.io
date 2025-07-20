@@ -1,0 +1,105 @@
+.card {
+  min-height: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px 25px;
+  margin: 5px;
+  border-radius: 8px;
+  gap: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  background: rgb(255, 255, 255);
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px);
+  }
+
+  &.block {
+    max-width: 242px;
+  }
+
+  &.inline {
+    max-width: 100%;
+    max-height: 340px;
+  }
+}
+
+.imageContainer {
+  width: 242px;
+  height: 352px;
+  overflow: hidden;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.image {
+  width: 100%;
+  object-fit: contain;
+}
+
+.content {
+  width: 100%;
+  display: flex;
+  align-content: flex-start;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  text-align: start;
+  font-size: 1.2rem;
+
+  & > * {
+    width: 100%;
+    max-height: 80px;
+    padding: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.name {
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: rgb(51, 51, 51);
+}
+
+.description {
+  color: rgb(102, 102, 102);
+  height: 70px;
+  max-height: 500px;
+  white-space: wrap;
+  overflow-y: auto;
+}
+
+.category {
+  white-space: nowrap;
+  color: rgb(69, 69, 69);
+}
+
+.priceContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  font-weight: 700;
+  color: rgb(44, 62, 80);
+}
+.price {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.date {
+  color: #454545;
+}
+
+.actions {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgb(238, 238, 238);
+}
