@@ -63,19 +63,20 @@
   font-size: 1.7rem;
   font-weight: 600;
   color: rgb(51, 51, 51);
+  white-space: nowrap;
 }
 
 .description {
   color: rgb(102, 102, 102);
   height: 70px;
   max-height: 500px;
-  white-space: wrap;
   overflow-y: auto;
+  white-space: wrap;
 }
 
 .category {
-  white-space: nowrap;
   color: rgb(69, 69, 69);
+  white-space: nowrap;
 }
 
 .priceContainer {
@@ -86,9 +87,9 @@
   color: rgb(44, 62, 80);
 }
 .price {
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .date {
