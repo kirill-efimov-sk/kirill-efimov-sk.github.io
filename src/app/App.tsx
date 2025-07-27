@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { InputModal } from 'src/shared/input-modal/InputModal';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
           Привет! Меня зовут Кирилл. Я frontend-разработчик c опытом более 2 лет, использующий React и на обучении хочу
           систематизировать свои знания. Telegram: @kirillefimov01
         </p>
+        <InputModal></InputModal>
       </header>
     </div>
   );
