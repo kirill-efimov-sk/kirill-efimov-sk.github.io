@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { Header, HeaderProps } from './Header';
 
 const meta: Meta<typeof Header> = {
-  title: 'Widgets/Layout/Header',
+  title: 'Feature/Header',
   component: Header,
   argTypes: {
     children: { type: 'string' },

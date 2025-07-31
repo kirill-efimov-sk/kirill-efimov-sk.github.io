@@ -17,7 +17,7 @@ export const AddToCart: FC<AddToCartProps> = ({ count = 0 }) => {
     return <CounterInput value={counter} onChange={setCounter} />;
   }
   return (
-    <Button onClick={() => setCounter(1)} title="Добавление в корзину">
+    <Button onClick={() => setCounter(1)} title="Добавление в корзину" disabled={true}>
       В корзину
     </Button>
   );

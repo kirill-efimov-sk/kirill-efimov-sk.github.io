@@ -1,18 +1,18 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { ThemeProvider } from 'src/app/theming';
+import { LanguageProvider } from 'src/app/localization';
+import { Layout } from 'src/widgets/layout/Layout';
+import { AboutMe } from 'src/features/about';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Привет! Меня зовут Кирилл. Я frontend-разработчик c опытом более 2 лет, использующий React и на обучении хочу
-          систематизировать свои знания. Telegram: @kirillefimov01
-        </p>
-      </header>
-    </div>
+    <ThemeProvider>
+      <LanguageProvider>
+        <Layout />
+        <AboutMe />
+      </LanguageProvider>
+    </ThemeProvider>
   );
 }
 
