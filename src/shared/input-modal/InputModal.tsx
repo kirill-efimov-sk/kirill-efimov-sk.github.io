@@ -11,6 +11,10 @@ export const InputModal: FC = () => {
     setInputValue(e.target.value);
   };
 
+  const handleCloseModal = () => {
+    setModalVisible(false);
+  };
+
   return (
     <div className={styles.container}>
       <input
@@ -22,7 +26,7 @@ export const InputModal: FC = () => {
         className={styles.input}
       />
       <Button onClick={() => setModalVisible(true)}>Открыть модальное окно</Button>
-      <Modal visible={isModalVisible}>
+      <Modal visible={isModalVisible} onClose={handleCloseModal}>
         <p>{inputValue}</p>
       </Modal>
     </div>

@@ -1,7 +1,9 @@
 .container {
-  width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  margin: 10px 25px;
 }
 
 .input {
