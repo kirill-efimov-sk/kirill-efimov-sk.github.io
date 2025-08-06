@@ -1,0 +1,29 @@
+.operations {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.operationList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(600px, 100%), 1fr));
+  grid-template-rows: auto;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  margin: 25px;
+}
+
+.operationLoader {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  background-color: rgb(255 255 255 / 20%);
+}
+
+@media (max-width: 1260px) {
+  .operationList {
+    grid-template-columns: 1fr;
+  }
+}
