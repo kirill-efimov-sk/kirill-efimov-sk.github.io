@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Card } from '../../../shared/card';
-import { Button } from '../../../shared/defaultButton';
+import { DefaultButton } from '../../../shared/defaultButton';
 import { formatingDate } from '../../../utils/variablesFormatting';
 import { BaseCardProps, CardCategoryProps, CardDateProps } from 'src/shared/card/card.types';
 
@@ -16,10 +16,13 @@ export const OperationDetailCard: FC<OperationDetailCardProps> = ({
   const formattedDate = formatingDate(new Date(date));
 
   return (
-    <Card price={price} category={category} name={name} description={description} date={formattedDate}>
-      <Button title="Редактирование операции" disabled>
-        Редактировать
-      </Button>
-    </Card>
+    <Card.Container type={'inline'}>
+      <Card.Content price={price} category={category} name={name} description={description} date={formattedDate} />
+      <Card.Actions>
+        <DefaultButton title="Редактирование операции" disabled>
+          Редактировать
+        </DefaultButton>
+      </Card.Actions>
+    </Card.Container>
   );
 };

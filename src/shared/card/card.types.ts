@@ -1,9 +1,16 @@
 /** Базовые пропсы для всех карточек */
-export interface BaseCardProps {
-  name: string;
+export interface BaseCardProps extends CardNameProps {
   description: string;
   price: number;
   children?: React.ReactNode;
+}
+
+export interface CardNameProps {
+  name: string;
+}
+
+export interface CardQuantityProps {
+  quantity: number;
 }
 
 /** Дополнительные поля для карточек */
