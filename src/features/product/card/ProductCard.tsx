@@ -10,12 +10,8 @@ export const ProductCard: FC<ProductCardProps> = ({ price, image, name, descript
   const truncatedText = useMemo(() => truncatingText(description, 100), [description]);
 
   return (
-    <Card.Container type={'block'}>
-      <Card.Image image={image} />
-      <Card.Content price={price} name={name} description={truncatedText} />
-      <Card.Actions>
-        <AddToCart count={0} />
-      </Card.Actions>
-    </Card.Container>
+    <Card price={price} image={image} name={name} description={truncatedText}>
+      <AddToCart count={0} />
+    </Card>
   );
 };
