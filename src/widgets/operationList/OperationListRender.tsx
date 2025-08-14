@@ -1,7 +1,9 @@
 import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
 import { OperationDetailCard } from 'src/features/operation/detailCard';
 import { OperationCard } from 'src/features/operation/card';
+import { Loader } from 'src/shared/loaders/intersactionObserver';
 import { Operation } from 'src/utils/dataListGenerator';
+import { useIntersectionObserver } from 'src/hooks/useIntersactionObserver';
 import styles from './operationList.module.scss';
 
 interface OperationListProps {
@@ -12,35 +14,31 @@ interface OperationListProps {
 export const OperationListRender: FC<OperationListProps> = ({ operations, onLoadMore }) => {
   const [isLoading, setIsLoading] = useState(false);
   const observerTarget = useRef<HTMLDivElement>(null);
+  const timeoutRef = useRef<number | null>(null);
+  const { startObserving, stopObserving } = useIntersectionObserver(observerTarget);
 
   const handleLoadMore = useCallback(async () => {
-    if (isLoading) return;
-
     setIsLoading(true);
 
-    setTimeout(() => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+
+    timeoutRef.current = window.setTimeout(() => {
       onLoadMore();
       setIsLoading(false);
     }, 250);
   }, [isLoading, onLoadMore]);
 
   useEffect(() => {
-    const targetElement = observerTarget.current as HTMLDivElement;
-    if (!targetElement) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && !isLoading) {
-          handleLoadMore();
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    observer.observe(targetElement);
-
-    return () => observer.unobserve(targetElement);
-  }, [isLoading, handleLoadMore]);
+    startObserving(handleLoadMore);
+    return () => {
+      stopObserving();
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, [startObserving, stopObserving, handleLoadMore]);
 
   return (
     <>
@@ -70,11 +68,7 @@ export const OperationListRender: FC<OperationListProps> = ({ operations, onLoad
         })}
       </div>
       {/* Добавляем триггерный элемент для подгрузки */}
-      <div className={styles.operationLoader}>
-        <div ref={observerTarget} aria-hidden="true" />
-
-        {isLoading && <div>Загрузка...</div>}
-      </div>
+      <Loader isLoading={isLoading} targetRef={observerTarget} />
     </>
   );
 };
