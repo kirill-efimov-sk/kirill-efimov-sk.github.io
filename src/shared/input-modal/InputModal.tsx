@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { DefaultButton } from '../defaultButton';
+import { Button } from '../defaultButton';
 import { Modal } from '../modal';
 import styles from './inputModal.module.scss';
 
@@ -25,7 +25,7 @@ export const InputModal: FC = () => {
         aria-label="Текст для добавления в модальное окно"
         className={styles.input}
       />
-      <DefaultButton onClick={() => setModalVisible(true)}>Открыть модальное окно</DefaultButton>
+      <Button onClick={() => setModalVisible(true)}>Открыть модальное окно</Button>
       <Modal visible={isModalVisible} onClose={handleCloseModal}>
         <p>{inputValue}</p>
       </Modal>

@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { DefaultButton } from '../../../../shared/defaultButton';
+import { Button } from '../../../../shared/defaultButton';
 import styles from './counterInput.module.scss';
 
 export interface CounterInputProps {
@@ -20,9 +20,9 @@ export const CounterInput: FC<CounterInputProps> = ({ value, onChange }) => {
 
   return (
     <div className={styles.counterContainer}>
-      <DefaultButton onClick={handleIncrement} title="Уменьшить количество">
+      <Button onClick={handleIncrement} title="Уменьшить количество">
         +
-      </DefaultButton>
+      </Button>
       <input
         name="counterInput"
         type="number"
@@ -32,9 +32,9 @@ export const CounterInput: FC<CounterInputProps> = ({ value, onChange }) => {
         min="0"
         className={styles.counterInput}
       />
-      <DefaultButton onClick={handleDecrement} title="Увеличить количество">
+      <Button onClick={handleDecrement} title="Увеличить количество">
         -
-      </DefaultButton>
+      </Button>
     </div>
   );
 };
