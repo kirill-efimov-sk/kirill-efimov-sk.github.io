@@ -5,9 +5,10 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   buttonClasses?: string;
 }
 
-export const Button: FC<ButtonProps> = ({ disabled = false, buttonClasses, children, ...props }) => {
+//Используется деструктуризация пропсов
+export const DefaultButton: FC<ButtonProps> = ({ buttonClasses, children, ...props }) => {
   return (
-    <button className={`${styles.button} ${buttonClasses}`} disabled={disabled} {...props}>
+    <button className={`${styles.button} ${buttonClasses}`} {...props}>
       {children}
     </button>
   );

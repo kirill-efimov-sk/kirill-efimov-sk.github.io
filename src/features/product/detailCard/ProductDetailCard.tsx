@@ -13,8 +13,12 @@ export const ProductDetailCard: FC<ProductDetailCardProps> = ({
   description,
 }): React.JSX.Element => {
   return (
-    <Card price={price} image={image} category={category} name={name} description={description}>
-      <AddToCart count={0} />
-    </Card>
+    <Card.Container type={'block'}>
+      <Card.Image image={image} />
+      <Card.Content price={price} category={category} name={name} description={description} />
+      <Card.Actions>
+        <AddToCart count={0} />
+      </Card.Actions>
+    </Card.Container>
   );
 };
