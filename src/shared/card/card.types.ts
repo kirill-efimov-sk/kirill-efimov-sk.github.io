@@ -32,3 +32,7 @@ export interface BaseCardDateProps {
 export interface CardDateProps {
   date?: Date;
 }
+
+export interface CardIdProps {
+  cardId: string;
+}

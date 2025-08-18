@@ -6,6 +6,7 @@ const meta: Meta<typeof OperationDetailCard> = {
   title: 'Feature/Operation/OperationDetailCard',
   component: OperationDetailCard,
   argTypes: {
+    cardId: { type: 'string' },
     price: { type: 'number' },
     category: { type: 'string' },
     name: { type: 'string' },
