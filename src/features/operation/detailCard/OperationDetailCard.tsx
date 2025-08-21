@@ -13,7 +13,7 @@ export interface OperationDetailCardProps
 export const OperationDetailCard: FC<OperationDetailCardProps> = React.memo(
   ({ price, category, name, description, date }): React.JSX.Element => {
     const formattedDate = formatingDate(new Date(date));
-    console.log(name);
+
     return (
       <Card.Container type={'inline'}>
         <Card.Content price={price} category={category} name={name} description={description} date={formattedDate} />
