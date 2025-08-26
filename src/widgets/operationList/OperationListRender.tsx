@@ -48,6 +48,7 @@ export const OperationListRender: FC<OperationListProps> = ({ operations, onLoad
             return (
               <OperationDetailCard
                 key={operation.id}
+                cardId={`operation-${operation.id}`}
                 price={operation.amount}
                 category={operation.category.name}
                 name={operation.name}
@@ -59,6 +60,7 @@ export const OperationListRender: FC<OperationListProps> = ({ operations, onLoad
           return (
             <OperationCard
               key={operation.id}
+              cardId={`operation-${operation.id}`}
               price={operation.amount}
               category={operation.category.name}
               name={operation.name}
