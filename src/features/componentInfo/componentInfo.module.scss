@@ -1,0 +1,37 @@
+.root {
+  font-family: Montserrat, sans-serif;
+  font-size: inherit;
+
+  & * {
+    font-size: inherit;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font-size: inherit;
+  }
+}
+
+.title {
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.main {
+  display: inline-block;
+  margin-top: 16px;
+  border-radius: 8px;
+  padding: 16px;
+  border: 1px solid #f0f0f0;
+  box-shadow: 1px 3px 20px 0 rgba(110, 110, 110, 0.3);
+
+  &:empty {
+    display: none;
+  }
+
+  &.fullWidth {
+    display: block;
+  }
+}

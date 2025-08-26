@@ -1,0 +1,50 @@
+.elem {
+  animation: fadeOut 1.5s ease-in forwards; // Анимация исчезновения
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  transition: opacity 0.5s ease;
+  opacity: 1;
+}
+
+.shifter {
+  color: rgb(235, 26, 26);
+}
+
+.buttonContainer {
+  margin: 16px;
+  & button {
+    min-width: 12rem;
+    min-height: 2rem;
+    border: 1px solid rgb(100, 100, 100);
+    border-radius: 5px;
+    background-color: #f7f7f7;
+    color: #000000;
+    cursor: pointer;
+    transition: box-shadow 200ms linear;
+  }
+
+  & button:hover {
+    background-color: #eeeeee;
+    box-shadow: 0 0.5em 1em 0 rgba(0, 0, 0, 0.15), 0 0.4em 0.5em -0.4em rgba(0, 0, 0, 0.4);
+  }
+  & button:active {
+    background-color: #ccc; /* Изменить цвет фона при нажатии */
+    transform: scale(0.98); /* Слегка уменьшить кнопку */
+  }
+}
+
+// Ключевые кадры анимации
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0) translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-120px) translateX(500px);
+  }
+}
