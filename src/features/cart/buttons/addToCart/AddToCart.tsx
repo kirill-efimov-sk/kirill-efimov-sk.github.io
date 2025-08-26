@@ -1,6 +1,6 @@
 import React, { FC, useMemo, useState } from 'react';
 import { CounterInput } from '../../ui/counterInput';
-import { Button } from '../../../../shared/defaultButton';
+import { DefaultButton } from '../../../../shared/defaultButton';
 
 export interface AddToCartProps {
   count?: number;
@@ -17,8 +17,8 @@ export const AddToCart: FC<AddToCartProps> = ({ count = 0 }) => {
     return <CounterInput value={counter} onChange={setCounter} />;
   }
   return (
-    <Button onClick={() => setCounter(1)} title="Добавление в корзину" disabled={true}>
+    <DefaultButton onClick={() => setCounter(1)} title="Добавление в корзину" disabled={true}>
       В корзину
-    </Button>
+    </DefaultButton>
   );
 };
