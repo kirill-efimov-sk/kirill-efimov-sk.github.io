@@ -22,3 +22,5 @@ export const ProductCard: FC<ProductCardProps> = React.memo(
   },
   (prev, next) => prev.cardId === next.cardId
 );
+
+ProductCard.displayName = 'ProductCard';
