@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-unresolved
 import { addOperations, addProducts, Operation, Product } from '../utils/dataListGenerator';
 
 export const useDataGenerator = (): {

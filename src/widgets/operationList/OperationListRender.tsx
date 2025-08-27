@@ -3,6 +3,7 @@ import { OperationDetailCard } from 'src/features/operation/detailCard';
 import { OperationCard } from 'src/features/operation/card';
 import { Loader } from 'src/shared/loaders/intersactionObserver';
 import { useIntersectionObserver } from 'src/hooks/useIntersactionObserver';
+// eslint-disable-next-line import/no-unresolved
 import { Operation } from '../../utils/dataListGenerator';
 import styles from './operationList.module.scss';
 
@@ -28,7 +29,7 @@ export const OperationListRender: FC<OperationListProps> = ({ operations, onLoad
       onLoadMore();
       setIsLoading(false);
     }, 250);
-  }, [isLoading, onLoadMore]);
+  }, [onLoadMore]);
 
   useEffect(() => {
     startObserving(handleLoadMore);

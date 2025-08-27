@@ -41,7 +41,7 @@ export const useIntersectionObserver = (
       observerRef.current.disconnect();
       observerRef.current = null;
     }
-  }, []);
+  }, [targetRef]);
 
   useEffect(() => {
     return stopObserving;
