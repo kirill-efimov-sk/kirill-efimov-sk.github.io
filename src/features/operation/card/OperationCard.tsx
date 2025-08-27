@@ -17,3 +17,5 @@ export const OperationCard: FC<OperationCardProps> = React.memo(
   },
   (prev, next) => prev.cardId === next.cardId
 );
+
+OperationCard.displayName = 'OperationCard';
