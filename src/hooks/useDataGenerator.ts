@@ -1,4 +1,4 @@
-import { addOperations, addProducts, Operation, Product } from 'src/utils/dataListGenerator';
+import { addOperations, addProducts, Operation, Product } from '../utils/dataListGenerator';
 
 export const useDataGenerator = (): {
   createProducts: (count: number) => Product[];

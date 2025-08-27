@@ -1,6 +1,5 @@
 import React, { forwardRef, useImperativeHandle, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { uid } from 'uid';
 import { EffectorElement } from './EffectorElement';
 import { Coords, EffectorElementData } from './Effector.types';
 
@@ -18,7 +17,7 @@ export const Effector = forwardRef<EffectorRef, EffectorProps>(({ className, con
 
   useImperativeHandle(ref, () => ({
     show: (elem: React.ReactNode, coords: Coords) => {
-      setElements((prev) => [...prev, { id: uid(16), elem, coords }]);
+      setElements((prev) => [...prev, { id: Math.random().toString(36).slice(2, 18), elem, coords }]);
     },
   }));
 

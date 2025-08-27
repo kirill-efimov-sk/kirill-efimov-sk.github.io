@@ -2,8 +2,8 @@ import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
 import { OperationDetailCard } from 'src/features/operation/detailCard';
 import { OperationCard } from 'src/features/operation/card';
 import { Loader } from 'src/shared/loaders/intersactionObserver';
-import { Operation } from 'src/utils/dataListGenerator';
 import { useIntersectionObserver } from 'src/hooks/useIntersactionObserver';
+import { Operation } from '../../utils/dataListGenerator';
 import styles from './operationList.module.scss';
 
 interface OperationListProps {

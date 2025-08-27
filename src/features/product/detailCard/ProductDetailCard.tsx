@@ -23,3 +23,5 @@ export const ProductDetailCard: FC<ProductDetailCardProps> = React.memo(
   },
   (prev, next) => prev.cardId === next.cardId
 );
+
+ProductDetailCard.displayName = 'ProductDetailCard';
