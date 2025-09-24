@@ -1,0 +1,6 @@
+.root {
+  padding: 2px 0;
+}
+.root > *::after {
+  color: rgba(255, 0, 0, 0.915);
+}
