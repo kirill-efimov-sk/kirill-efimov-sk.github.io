@@ -4,8 +4,8 @@ import { ThemeProvider } from 'src/app/theming';
 import { LanguageProvider } from 'src/app/localization';
 import { Layout } from 'src/widgets/layout/Layout';
 import { AboutMe } from 'src/features/about';
-import { OperationList } from 'src/widgets/operationList';
-import { InputModal } from 'src/shared/input-modal';
+import { InputModal } from '../shared/input-modal';
+import { OperationList } from '../widgets/operationList';
 import './App.css';
 
 function App() {
