@@ -3,8 +3,7 @@ import { OperationDetailCard } from 'src/features/operation/detailCard';
 import { OperationCard } from 'src/features/operation/card';
 import { Loader } from 'src/shared/loaders/intersactionObserver';
 import { useIntersectionObserver } from 'src/hooks/useIntersactionObserver';
-// eslint-disable-next-line import/no-unresolved
-import { Operation } from '../../utils/dataListGenerator';
+import { Operation } from 'src/utils/dataListGenerator';
 import styles from './operationList.module.scss';
 
 interface OperationListProps {
