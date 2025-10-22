@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { Button } from 'antd';
 import { UserForms } from '../../../features/forms';
-import { Title } from '../../../shared/title';
+import { Title } from '../../../shared/Title';
 import { AuthFormValues } from '../../../features/forms/authForm/types';
 import { useSignUpForm } from '../../../hooks/forms/useSignUpForm';
 import styles from './signUp.module.scss';

@@ -1,13 +1,10 @@
 import React, { FC, useCallback, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Title } from 'src/shared/title';
 import { OperationListRender } from './OperationListRender';
 import { useDataGenerator } from 'src/hooks/useDataGenerator';
 import { Operation } from 'src/utils/dataListGenerator';
 import styles from './operationList.module.scss';
 
 export const OperationList: FC = () => {
-  const { t } = useTranslation();
   const { createOperations } = useDataGenerator();
   const [operations, setOperations] = useState<Operation[]>(() => createOperations(5));
 
@@ -17,7 +14,7 @@ export const OperationList: FC = () => {
 
   return (
     <div className={styles.operations}>
-      <Title className={`${styles.title}`}>{t('screens.OperationScreen.list.title')}</Title>
+      <h2>Список операций</h2>
       <OperationListRender operations={operations} onLoadMore={handleLoadMore}></OperationListRender>
     </div>
   );
