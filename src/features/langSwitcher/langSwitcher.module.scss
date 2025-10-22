@@ -2,12 +2,17 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  column-gap: 20px;
+  column-gap: 5px;
 }
 
 .localeHeader {
-  width: 60px;
+  width: 65px;
   font-size: 14px;
   letter-spacing: 0.2px;
   font-weight: 500;
+}
+
+.languageSwitcher {
+  display: flex;
+  flex-direction: row;
 }

@@ -1,0 +1,50 @@
+.navigate {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  .navigateLeft {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .navigateRight {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  a {
+    color: inherit;
+    margin: 0 10px;
+    transition: color 0.3s;
+  }
+
+  a:hover {
+    color: rgb(24, 144, 255);
+  }
+
+  a.active {
+    border-bottom: 2px solid rgb(24, 144, 255);
+  }
+
+  .name {
+    letter-spacing: 0.85px;
+  }
+
+  .cart {
+    font-size: 22px;
+  }
+}

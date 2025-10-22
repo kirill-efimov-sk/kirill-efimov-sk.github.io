@@ -1,9 +1,9 @@
 import React, { memo } from 'react';
 import cn from 'clsx';
-import Input from 'antd/lib/input';
+import { Input } from 'antd';
 import { FormikHandlers } from 'formik/dist';
 import { useTranslation } from 'react-i18next';
-import { FormItem } from '../../../../shared/FormItem';
+import { FormItem } from '../../../../shared/formItem';
 import { getValidates } from '../../../../utils/validation';
 import { ProfileFormProps } from '../types';
 import styles from './aboutField.module.scss';
@@ -31,6 +31,8 @@ export const AboutField = memo<AboutFieldProps>(
         help={help}
       >
         <Input.TextArea
+          rows={4}
+          maxLength={12}
           disabled={disabled}
           name="about"
           onChange={onChange}
