@@ -10,6 +10,11 @@
   grid-column-gap: 10px;
   grid-row-gap: 10px;
   margin: 25px;
+  padding: 0 10px;
+}
+.title {
+  font-size: 20px;
+  margin: auto;
 }
 
 @media (max-width: 1260px) {

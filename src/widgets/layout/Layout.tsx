@@ -12,8 +12,8 @@ export const Layout: FC<LayoutProps> = ({ children }): React.JSX.Element => {
   return (
     <div className={styles.layout}>
       <Header>
-        <LanguageSwitcher />
         <ThemeSwitcher />
+        <LanguageSwitcher />
       </Header>
       <div className={styles.content}>{children}</div>
     </div>
