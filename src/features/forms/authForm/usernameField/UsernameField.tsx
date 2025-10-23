@@ -5,7 +5,7 @@ import { FormikHandlers } from 'formik/dist';
 import { UserOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 import { AuthFormProps } from '../types';
-import { FormItem } from '../../../../shared/FormItem';
+import { FormItem } from '../../../../shared/formItem';
 import { getValidates } from '../../../../utils/validation';
 import styles from './usernameField.module.scss';
 

@@ -4,7 +4,7 @@ import dayjs, { Dayjs } from 'dayjs';
 import { DatePicker, Space } from 'antd';
 import { FormikHandlers } from 'formik/dist';
 import { useTranslation } from 'react-i18next';
-import { FormItem } from '../../../../shared/FormItem';
+import { FormItem } from '../../../../shared/formItem';
 import { getValidates } from '../../../../utils/validation';
 import { OperationFormProps } from '../types';
 import styles from './dateField.module.scss';
