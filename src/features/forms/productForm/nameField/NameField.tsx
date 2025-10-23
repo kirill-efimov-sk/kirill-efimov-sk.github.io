@@ -3,7 +3,7 @@ import cn from 'clsx';
 import { Input } from 'antd';
 import { FormikHandlers } from 'formik/dist';
 import { useTranslation } from 'react-i18next';
-import { FormItem } from '../../../../shared/formItem';
+import { FormItem } from '../../../../shared/FormItem';
 import { getValidates } from '../../../../utils/validation';
 import { ProductFormProps } from '../types';
 import styles from './nameField.module.scss';
