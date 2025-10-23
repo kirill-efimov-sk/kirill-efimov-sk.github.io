@@ -1,1 +1,0 @@
-export { OperationsScreen } from './OperationsScreen';

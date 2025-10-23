@@ -1,6 +1,5 @@
 .header {
-  width: 100vw;
-  height: 60px;
+  height: 100px;
   display: flex;
   justify-content: space-between;
   flex-shrink: 0;
@@ -9,6 +8,7 @@
   left: 0;
   right: 0;
   align-items: center;
+  padding: 0 50px 0 20px;
   z-index: 999;
   border-bottom: 1px solid rgb(175, 175, 175);
 }
@@ -23,12 +23,8 @@
 }
 
 .contollers {
-  height: 100%;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-end;
+  align-items: flex-end;
+  flex-direction: column;
   row-gap: 15px;
-  column-gap: 25px;
-  margin: 0 45px 0 40px;
 }
