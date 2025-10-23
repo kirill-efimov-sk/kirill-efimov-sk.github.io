@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { Button } from 'antd';
 import { UserForms } from '../../forms';
-import { Title } from '../../../shared/Title';
+import { Title } from '../../../shared/title';
 import { OperationFormValues } from '../../forms/operationForm/types';
 import { useOperationForm } from '../../../hooks/forms/useOperationForm';
 import styles from './operationScreenForm.module.scss';

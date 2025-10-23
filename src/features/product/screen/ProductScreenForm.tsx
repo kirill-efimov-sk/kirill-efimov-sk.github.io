@@ -4,7 +4,7 @@ import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { Button } from 'antd';
 import { UserForms } from '../../forms';
-import { Title } from '../../../shared/Title';
+import { Title } from '../../../shared/title';
 import { ProductFormValues } from '../../forms/productForm/types';
 import { useProductForm } from '../../../hooks/forms/useProductForm';
 import styles from './productScreenForm.module.scss';

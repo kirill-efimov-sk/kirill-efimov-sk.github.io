@@ -11,7 +11,7 @@ export const LanguageSwitcher: React.FC = () => {
   return (
     <div className={styles.localeController}>
       <div className={styles.localeHeader}>{t('switchLanguage')}</div>
-      <Radio.Group value={language} onChange={(e) => setLanguage(e.target.value)} buttonStyle="solid">
+      <Radio.Group value={language} onChange={(e) => setLanguage(e.target.value)} className={styles.languageSwitcher}>
         <Radio.Button value={Locale.en}>EN</Radio.Button>
         <Radio.Button value={Locale.ru}>RU</Radio.Button>
       </Radio.Group>

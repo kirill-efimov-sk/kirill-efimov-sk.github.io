@@ -4,7 +4,7 @@ import { Upload, Button } from 'antd';
 import type { UploadProps } from 'antd';
 import { FormikHandlers } from 'formik/dist';
 import { useTranslation } from 'react-i18next';
-import { FormItem } from '../../../../shared/FormItem';
+import { FormItem } from '../../../../shared/formItem';
 import { getValidates } from '../../../../utils/validation';
 import { ProductFormProps, ProductFormFileSelect } from '../types';
 import styles from './imageField.module.scss';

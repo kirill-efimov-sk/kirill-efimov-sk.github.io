@@ -4,6 +4,14 @@ export const resources = {
       switchLanguage: 'Language',
       aboutMe:
         'Hello! My name is Kirill. I am a frontend developer with over 2 years of experience using React and I want to systematize my knowledge during training. Telegram: @kirillefimov01',
+      header: {
+        routes: {
+          operations: 'Operations',
+          products: 'Products',
+          profile: 'Profile',
+          cart: 'Cart',
+        },
+      },
       errors: {
         is_required: 'The field cannot be empty',
         min_value: 'The field contains an invalid value',
@@ -88,6 +96,14 @@ export const resources = {
         },
       },
       screens: {
+        MainScreen: {
+          h1: 'Home page',
+          text: 'Select the section you are interested in',
+        },
+        PageNotFoundScreen: {
+          h1: '404 - Page not found',
+          text: 'Sorry, the page you requested does not exist',
+        },
         AuthScreen: {
           signIn: {
             success: 'Authorization completed successfully',
@@ -120,6 +136,9 @@ export const resources = {
             success: 'Information saved successfully',
             save: 'Save',
           },
+          list: {
+            title: 'Operations list',
+          },
         },
         ProductScreen: {
           title: 'Product data',
@@ -127,6 +146,14 @@ export const resources = {
             title: 'Product information',
             success: 'Information saved successfully',
             save: 'Save',
+          },
+          list: {
+            title: 'Product list',
+          },
+        },
+        CartScreen: {
+          list: {
+            title: 'Product cart',
           },
         },
       },
@@ -137,6 +164,14 @@ export const resources = {
       switchLanguage: 'Язык',
       aboutMe:
         'Привет! Меня зовут Кирилл. Я frontend-разработчик c опытом более 2 лет, использующий React и на обучении хочу систематизировать свои знания. Telegram: @kirillefimov01',
+      header: {
+        routes: {
+          operations: 'Операции',
+          products: 'Товары',
+          profile: 'Профиль',
+          cart: 'Корзина',
+        },
+      },
       errors: {
         is_required: 'Поле не может быть пустым',
         min_value: 'Поле содержит недопустимое значение',
@@ -221,6 +256,14 @@ export const resources = {
         },
       },
       screens: {
+        MainScreen: {
+          h1: 'Домашняя страница',
+          text: 'Выберите интересующий вас раздел',
+        },
+        PageNotFoundScreen: {
+          h1: '404 - Страница не найдена',
+          text: 'Извините, запрашиваемая страница не существует',
+        },
         AuthScreen: {
           signIn: {
             success: 'Авторизация завершена успешно',
@@ -253,13 +296,24 @@ export const resources = {
             success: 'Информация успешно сохранена',
             save: 'Сохранить',
           },
+          list: {
+            title: 'Список операций',
+          },
         },
         ProductScreen: {
-          title: 'Данные о продукте',
+          title: 'Данные о товаре',
           edit: {
-            title: 'Информация о продукте',
+            title: 'Информация о товаре',
             success: 'Информация успешно сохранена',
             save: 'Сохранить',
+          },
+          list: {
+            title: 'Список товаров',
+          },
+        },
+        CartScreen: {
+          list: {
+            title: 'Корзина товаров',
           },
         },
       },

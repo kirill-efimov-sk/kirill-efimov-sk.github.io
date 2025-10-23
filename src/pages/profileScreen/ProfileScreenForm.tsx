@@ -4,7 +4,7 @@ import { FormikConfig } from 'formik/dist';
 import { useTranslation } from 'react-i18next';
 import { Button, message } from 'antd';
 import { UserForms } from '../../features/forms';
-import { Title } from '../../shared/Title';
+import { Title } from '../../shared/title';
 import { ProfileFormValues, ProfileFormErrors } from '../../features/forms/profileForm/types';
 import styles from './profileScreenForm.module.scss';
 
