@@ -2,15 +2,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 0 50px;
 }
 .operationList {
+  width: 100%;
+  max-width: 1920px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(600px, 100%), 1fr));
   grid-template-rows: auto;
   grid-column-gap: 10px;
   grid-row-gap: 10px;
-  margin: 25px;
-  padding: 0 10px;
+  justify-items: center;
+  margin: 25px 0;
 }
 .title {
   font-size: 20px;

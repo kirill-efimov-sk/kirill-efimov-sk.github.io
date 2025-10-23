@@ -1,18 +1,20 @@
 import React, { FC } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Location, useLocation } from 'react-router-dom';
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
   redirectPath?: string;
 }
 
-export const ProtectedRoute: FC<ProtectedRouteProps> = ({ children, redirectPath = '/auth' }) => {
-  // позднее сюда нужно добавить вызов хука для получения данных об успешности аунтификации
-  const token = true;
-  // пока нет auth Navigation по пути * перебросит на /home!
-  if (!token) {
-    return <Navigate to={redirectPath} replace />;
-  }
+type NavigationState = {
+  from?: Location;
+};
 
-  return <>{children}</>;
+export const ProtectedRoute: FC<ProtectedRouteProps> = ({ children, redirectPath = '/auth' }) => {
+  // позднее сюда нужно добавить вызов хука useSelector для получения данных об успешности аунтификации
+  const token = true;
+  const location = useLocation();
+
+  if (token) return <>{children}</>;
+  return <Navigate to={redirectPath} state={{ from: location } as NavigationState} replace />;
 };
