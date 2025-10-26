@@ -10,6 +10,7 @@ export const resources = {
           products: 'Products',
           profile: 'Profile',
           cart: 'Cart',
+          over: 'Over',
         },
       },
       errors: {
@@ -170,6 +171,7 @@ export const resources = {
           products: 'Товары',
           profile: 'Профиль',
           cart: 'Корзина',
+          over: 'Прочее',
         },
       },
       errors: {

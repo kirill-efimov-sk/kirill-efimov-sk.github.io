@@ -8,7 +8,7 @@ import { getValidates } from '../../../../utils/validation';
 import { ProductFormProps } from '../types';
 import styles from './categoryField.module.scss';
 
-export type CategoryFieldProps = Pick<ProductFormProps, 'className' | 'disabled' | 'autoFocusElement'> & {
+export type CategoryFieldProps = Pick<ProductFormProps, 'className' | 'disabled'> & {
   submitCount: number;
   touched: boolean;
   errors: string;
@@ -18,7 +18,7 @@ export type CategoryFieldProps = Pick<ProductFormProps, 'className' | 'disabled'
 };
 
 export const CategoryField = memo<CategoryFieldProps>(
-  ({ className, onChange, onBlur, autoFocusElement, touched, value, errors, disabled, submitCount }) => {
+  ({ className, onChange, onBlur, touched, value, errors, disabled, submitCount }) => {
     const { t } = useTranslation();
 
     const { validateStatus, help } = getValidates(errors, touched, submitCount);
@@ -32,9 +32,7 @@ export const CategoryField = memo<CategoryFieldProps>(
       >
         <Input
           disabled={disabled}
-          ref={autoFocusElement}
           data-cy="input-category"
-          autoFocus
           name="category"
           onChange={onChange}
           onBlur={onBlur}
