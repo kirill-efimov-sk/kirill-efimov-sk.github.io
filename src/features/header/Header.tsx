@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Logo } from '../../shared/logo';
 import { useThemeContext, Theme } from '../../app/theming';
-import { NavigationPanel } from '../navigationPanel';
+import { Navigation } from '../navigation';
 import styles from './header.module.scss';
 
 export interface HeaderProps {
@@ -15,7 +15,7 @@ export const Header: FC<HeaderProps> = ({ children }): React.JSX.Element => {
   return (
     <header className={`${styles.header} ${classTheme}`}>
       <Logo />
-      <NavigationPanel />
+      <Navigation />
       <div className={styles.contollers}>{children}</div>
     </header>
   );

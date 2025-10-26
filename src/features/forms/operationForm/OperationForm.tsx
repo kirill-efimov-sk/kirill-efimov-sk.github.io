@@ -15,6 +15,7 @@ export const OperationForm = memo<OperationFormProps>(
     return (
       <form ref={formElement} onSubmit={handleSubmit} className={cn(styles.root, className)}>
         <NameField
+          autoFocusElement={autoFocusElement}
           onBlur={handleBlur}
           onChange={handleChange}
           value={values.name}
@@ -33,7 +34,6 @@ export const OperationForm = memo<OperationFormProps>(
           disabled={disabled}
         />
         <CategoryField
-          autoFocusElement={autoFocusElement}
           onBlur={handleBlur}
           onChange={handleChange}
           value={values.category}

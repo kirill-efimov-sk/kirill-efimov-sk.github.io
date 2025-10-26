@@ -14,7 +14,7 @@ const initUserdata = {
 };
 
 export interface SignInFormProps {
-  initialUserData: AuthFormValues;
+  initialUserData?: AuthFormValues;
 }
 
 export const SignInScreenForm: React.FC<SignInFormProps> = ({ initialUserData = initUserdata }) => {

@@ -2,9 +2,9 @@ import React, { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ShoppingOutlined } from '@ant-design/icons';
-import styles from './navigationPanel.module.scss';
+import styles from './navigation.module.scss';
 
-export const NavigationPanel: FC = () => {
+export const Navigation: FC = () => {
   const { t } = useTranslation();
 
   return (
@@ -15,6 +15,9 @@ export const NavigationPanel: FC = () => {
         </NavLink>
         <NavLink to="/products" className={({ isActive }) => (isActive ? styles.active : '')}>
           <span className={styles.name}>{t('header.routes.products')}</span>
+        </NavLink>
+        <NavLink to="/over" className={({ isActive }) => (isActive ? styles.active : '')}>
+          <span className={styles.name}>{t('header.routes.over')}</span>
         </NavLink>
       </div>
       <div className={styles.navigateRight}>

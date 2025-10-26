@@ -2,7 +2,7 @@ import React from 'react';
 import { ConfigProvider, App as AntdApp } from 'antd';
 import { ThemeProvider } from 'src/app/theming';
 import { LanguageProvider } from 'src/app/localization';
-import { Navigation } from 'src/app/navigation';
+import { RouterProvider } from 'src/app/navigation';
 import { Layout } from 'src/widgets/layout/Layout';
 import './App.css';
 
@@ -11,11 +11,11 @@ function App() {
     <ThemeProvider>
       <LanguageProvider>
         <ConfigProvider>
-          <AntdApp>
-            <Navigation>
+          <RouterProvider>
+            <AntdApp>
               <Layout />
-            </Navigation>
-          </AntdApp>
+            </AntdApp>
+          </RouterProvider>
         </ConfigProvider>
       </LanguageProvider>
     </ThemeProvider>
