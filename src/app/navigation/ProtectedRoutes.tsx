@@ -17,10 +17,12 @@ export const ProtectedRoutes: FC = () => {
       <Routes>
         <Route index element={<Navigate to="/home" replace />} />
         <Route path="/home" element={<MainScreen />} />
-        <Route path="/operations" element={<OperationsScreen />} />
-        <Route path="/operations/*" element={<OperationModalViewer />} />
-        <Route path="/products" element={<ProductsScreen />} />
-        <Route path="/products/*" element={<ProductModalViewer />} />
+        <Route path="/operations" element={<OperationsScreen />}>
+          <Route path=":id" element={<OperationModalViewer />} />
+        </Route>
+        <Route path="/products" element={<ProductsScreen />}>
+          <Route path=":id" element={<ProductModalViewer />} />
+        </Route>
         <Route path="/profile" element={<ProfileScreenForm />} />
         <Route path="/cart" element={<CartScreen />} />
         <Route path="/over" element={<OverScreen />} />
