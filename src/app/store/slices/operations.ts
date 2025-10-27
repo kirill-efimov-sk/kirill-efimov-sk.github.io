@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit/src';
+import { createSlice } from '@reduxjs/toolkit';
 import { Operation } from 'src/utils/dataListGenerator';
 import { RootState } from '../index';
 
@@ -6,7 +6,7 @@ export const operationsSlice = createSlice({
   name: 'operations',
   initialState: null,
   reducers: {
-    set: (_, action: PayloadAction<Operation[]>) => action.payload,
+    set: (_, action: { payload: Operation[]; type: string }) => action.payload,
   },
 });
 

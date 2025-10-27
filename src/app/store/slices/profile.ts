@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit/src';
+import { createSlice } from '@reduxjs/toolkit';
 import { ProfileFormValues } from 'src/features/forms/profileForm/types';
 import { RootState } from '../index';
 
@@ -6,7 +6,7 @@ export const profileSlice = createSlice({
   name: 'profile',
   initialState: null,
   reducers: {
-    set: (_, action: PayloadAction<ProfileFormValues>) => action.payload,
+    set: (_, action: { payload: ProfileFormValues; type: string }) => action.payload,
   },
 });
 
