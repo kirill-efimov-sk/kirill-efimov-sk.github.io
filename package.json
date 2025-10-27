@@ -67,6 +67,7 @@
     "webpack-dev-server": "^4.15.0"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.9.2",
     "antd": "^5.27.3",
     "clsx": "^1.2.1",
     "dayjs": "^1.11.18",
@@ -76,6 +77,7 @@
     "react-dom": "^18.2.0",
     "react-i18next": "^15.6.1",
     "react-router-dom": "^7.9.4",
+    "redux-saga": "^1.4.2",
     "uid": "^2.0.2"
   }
 }
