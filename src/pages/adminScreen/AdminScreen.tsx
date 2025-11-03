@@ -1,9 +1,9 @@
 import React, { FC, useState } from 'react';
 import { DefaultButton } from 'src/shared/defaultButton';
 import { Modal } from 'src/shared/modal/Modal';
-import styles from './overScreen.module.scss';
+import styles from './adminScreen.module.scss';
 
-export const OverScreen: FC = () => {
+export const AdminScreen: FC = () => {
   const [isModalVisible, setModalVisible] = useState(false);
   const handleCloseModal = () => {
     setModalVisible(false);

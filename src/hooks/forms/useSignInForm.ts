@@ -2,21 +2,26 @@ import { useMemo, useState, useCallback } from 'react';
 import { FormikConfig } from 'formik/dist';
 import { useTranslation } from 'react-i18next';
 import { message } from 'antd';
+import { useDispatch } from 'react-redux';
 import { AuthFormErrors, AuthFormValues } from 'src/features/forms/authForm/types';
 import { regex } from '../../utils/regex';
 import { isLongEnough, isNotDefinedString } from '../../utils/validation';
+import { tokenActions } from 'src/app/store/slices/token';
+import { profileActions } from 'src/app/store/slices/profile';
 
 export interface SignInFormProps {
   initialAuthData?: AuthFormValues;
 }
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const TOKEN_FAKE = '13ewefe534tfscaewtgvfcdas';
 
 export const useSignInForm = (
   initialAuthData: AuthFormValues
 ): Pick<FormikConfig<AuthFormValues>, 'onSubmit' | 'validate' | 'initialValues'> & { loading: boolean } => {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
   const initialValues = useMemo(
     () => ({
@@ -64,8 +69,25 @@ export const useSignInForm = (
         console.log('Submitting sign in:', values);
 
         //Имитация API-запроса
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-        message.success(t('screens.AuthScreen.signIn.success'));
+        await new Promise((resolve) =>
+          setTimeout(() => {
+            resolve;
+
+            if (TOKEN_FAKE) {
+              dispatch(tokenActions.set(TOKEN_FAKE));
+              dispatch(
+                profileActions.set({
+                  name: values.username,
+                  about: '',
+                  rights: { editing: values.username.includes('admin') ? true : false },
+                })
+              );
+
+              message.success(t('screens.AuthScreen.signIn.success'));
+            }
+          }, 1000)
+        );
+
         resetForm();
       } catch (error) {
         message.error(t('screens.AuthScreen.signIn.error'));
@@ -73,7 +95,7 @@ export const useSignInForm = (
         setLoading(false);
       }
     },
-    [t]
+    [t, dispatch]
   );
 
   return {

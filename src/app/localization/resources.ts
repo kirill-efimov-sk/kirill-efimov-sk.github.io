@@ -10,7 +10,8 @@ export const resources = {
           products: 'Products',
           profile: 'Profile',
           cart: 'Cart',
-          over: 'Over',
+          over: 'Administration',
+          logout: 'Logout',
         },
       },
       errors: {
@@ -110,11 +111,19 @@ export const resources = {
             success: 'Authorization completed successfully',
             title: 'Authorization',
             submit: 'Sign in',
+            question: 'Already have an account?',
           },
           signUp: {
             success: 'Registration completed successfully',
             title: 'Registration',
             submit: 'Sign up',
+            question: 'Not registered yet?',
+          },
+          logout: {
+            success: 'Logout completed successfully',
+            title: 'Logout',
+            submit: 'Logout',
+            question: 'Are you sure you want to exit?',
           },
         },
         ProfileScreen: {
@@ -171,7 +180,7 @@ export const resources = {
           products: 'Товары',
           profile: 'Профиль',
           cart: 'Корзина',
-          over: 'Прочее',
+          over: 'Администрирование',
         },
       },
       errors: {
@@ -271,11 +280,19 @@ export const resources = {
             success: 'Авторизация завершена успешно',
             title: 'Авторизация',
             submit: 'Войти',
+            question: 'Уже есть аккаунт?',
           },
           signUp: {
             success: 'Регистрация завершена успешно',
-            title: 'Регистрация пользователя',
+            title: 'Регистрация',
             submit: 'Зарегистрироваться',
+            question: 'Еще не зарегистрированы?',
+          },
+          logout: {
+            success: 'Выход осуществлен успешно',
+            title: 'Выход',
+            submit: 'Выход',
+            question: 'Вы уверены, что хотите выйти?',
           },
         },
         ProfileScreen: {

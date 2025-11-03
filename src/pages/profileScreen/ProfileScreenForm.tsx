@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo } from 'react';
+import { useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import { FormikConfig } from 'formik/dist';
 import { useTranslation } from 'react-i18next';
@@ -6,27 +7,18 @@ import { Button, message } from 'antd';
 import { UserForms } from '../../features/forms';
 import { Title } from '../../shared/title';
 import { ProfileFormValues, ProfileFormErrors } from '../../features/forms/profileForm/types';
+import { profileSelectors } from 'src/app/store/slices/profile';
 import styles from './profileScreenForm.module.scss';
 
-const initProfile = {
-  name: '',
-  about: '',
-};
-
-export interface ProfileFormProps {
-  initialProfile?: ProfileFormValues;
-}
-
-export const ProfileScreenForm: React.FC<ProfileFormProps> = ({ initialProfile = initProfile }) => {
+export const ProfileScreenForm: React.FC = () => {
   const { t } = useTranslation();
+  const profile = useSelector(profileSelectors.get);
+
   const { onSubmit, validate, initialValues } = useMemo<
     Pick<FormikConfig<ProfileFormValues>, 'onSubmit' | 'validate' | 'initialValues'>
   >(() => {
     return {
-      initialValues: {
-        name: initialProfile.name,
-        about: initialProfile.about,
-      },
+      initialValues: profile,
       onSubmit: (values) => {
         console.log('Submitting:', values);
         // Имитация успешного сохранения
@@ -42,7 +34,7 @@ export const ProfileScreenForm: React.FC<ProfileFormProps> = ({ initialProfile =
         return errors;
       },
     };
-  }, [initialProfile, t]);
+  }, [profile, t]);
 
   const formManager = useFormik<ProfileFormValues>({
     initialValues,
@@ -52,11 +44,8 @@ export const ProfileScreenForm: React.FC<ProfileFormProps> = ({ initialProfile =
   const { submitForm, setValues } = formManager;
 
   useEffect(() => {
-    setValues({
-      name: initialProfile.name,
-      about: initialProfile.about,
-    });
-  }, [initialProfile, setValues]);
+    setValues(profile);
+  }, [profile, setValues]);
 
   return (
     <div className={`${styles.container}`}>

@@ -15,10 +15,11 @@ const initUserdata = {
 };
 
 export interface SignUpFormProps {
-  initialUserData: AuthFormValues;
+  initialUserData?: AuthFormValues;
+  children?: React.ReactNode;
 }
 
-export const SignUpScreenForm: React.FC<SignUpFormProps> = ({ initialUserData = initUserdata }) => {
+export const SignUpScreenForm: React.FC<SignUpFormProps> = ({ initialUserData = initUserdata, children }) => {
   const { t } = useTranslation();
 
   const { initialValues, onSubmit, validate, loading } = useSignUpForm(initialUserData);
@@ -46,6 +47,7 @@ export const SignUpScreenForm: React.FC<SignUpFormProps> = ({ initialUserData = 
       <Button type="primary" onClick={submitForm} style={{ marginTop: '16px' }} loading={loading}>
         {t('screens.AuthScreen.signUp.submit')}
       </Button>
+      {children}
     </div>
   );
 };

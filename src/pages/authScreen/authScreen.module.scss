@@ -1,0 +1,17 @@
+.auth {
+  display: flex;
+  flex-direction: column;
+}
+
+.linkContainer {
+  margin: 25px 0 0 0;
+  text-align: center;
+
+  & > a {
+    margin: 0 10px;
+    text-decoration: underline;
+    &:hover {
+      color: rgba(41, 122, 68, 0.842);
+    }
+  }
+}
