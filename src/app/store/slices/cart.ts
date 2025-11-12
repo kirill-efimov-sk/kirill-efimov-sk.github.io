@@ -1,12 +1,30 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { Product } from 'src/utils/dataListGenerator';
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import { CartProductItemProps } from 'src/pages/cartScreen';
 import { RootState } from '../index';
+
+export type CartState = CartProductItemProps[];
+
+const initialState: CartState = [];
 
 export const cartSlice = createSlice({
   name: 'cart',
-  initialState: null,
+  initialState,
   reducers: {
-    set: (_, action: { payload: Product[]; type: string }) => action.payload,
+    set: (_, action: PayloadAction<CartState>) => action.payload,
+    add: (state, action: PayloadAction<CartState>) => [...state, ...action.payload],
+    update: (state, action: PayloadAction<CartProductItemProps>) => {
+      const index = state.findIndex((item) => item.id === action.payload.id);
+
+      if (index !== -1) {
+        state[index] = {
+          ...state[index],
+          ...action.payload,
+        };
+      }
+    },
+    delete: (state, action: PayloadAction<CartProductItemProps>) => {
+      return state.filter((item) => item.id !== action.payload.id);
+    },
   },
 });
 

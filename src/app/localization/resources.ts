@@ -22,6 +22,10 @@ export const resources = {
         password_to_small: 'The password must contain at least 8 characters',
         invalid_email: 'Invalid username format, missing mail',
       },
+      modal: {
+        close: 'Close',
+        label: 'Close modal window',
+      },
       forms: {
         AuthForm: {
           username: {
@@ -145,6 +149,10 @@ export const resources = {
             title: 'Operation information',
             success: 'Information saved successfully',
             save: 'Save',
+            button: {
+              name: 'Edit',
+              title: 'Edit operation information',
+            },
           },
           list: {
             title: 'Operations list',
@@ -156,6 +164,10 @@ export const resources = {
             title: 'Product information',
             success: 'Information saved successfully',
             save: 'Save',
+            button: {
+              name: 'Edit',
+              title: 'Edit product information',
+            },
           },
           list: {
             title: 'Product list',
@@ -164,6 +176,37 @@ export const resources = {
         CartScreen: {
           list: {
             title: 'Product cart',
+            empty: `Your shopping cart is empty. Please select the items you're interested in.`,
+          },
+          buttons: {
+            add: {
+              name: 'Add to cart',
+              title: 'Add item to cart',
+            },
+          },
+        },
+        AdminScreen: {
+          title: 'Administration',
+          buttons: {
+            generateOperations: {
+              name: 'Generating 5 random operations (mocks)',
+              title: 'Generating random operations',
+            },
+            generateProducts: {
+              name: 'Generate 5 random products (mocks)',
+              title: 'Generate random products',
+            },
+            addNewOperationItem: {
+              name: 'Adding an operation',
+              title: 'Adding a new operation',
+            },
+            addNewProductItem: {
+              name: 'Adding a product',
+              title: 'Adding a new product',
+            },
+          },
+          messages: {
+            createRandomItemsMessage: 'Data generation completed successfully',
           },
         },
       },
@@ -190,6 +233,10 @@ export const resources = {
         password_not_match: 'Пароли не совпадают',
         password_to_small: 'Пароль должен содержать минимум 8 символов',
         invalid_email: 'Неверный формат имени пользователя, отсутствует почта',
+      },
+      modal: {
+        close: 'Закрыть',
+        label: 'Закрыть модальное окно',
       },
       forms: {
         AuthForm: {
@@ -314,6 +361,10 @@ export const resources = {
             title: 'Информация об операции',
             success: 'Информация успешно сохранена',
             save: 'Сохранить',
+            button: {
+              name: 'Редактировать',
+              title: 'Редактировать информацию об операции',
+            },
           },
           list: {
             title: 'Список операций',
@@ -325,6 +376,10 @@ export const resources = {
             title: 'Информация о товаре',
             success: 'Информация успешно сохранена',
             save: 'Сохранить',
+            button: {
+              name: 'Редактировать',
+              title: 'Редактировать информацию о товаре',
+            },
           },
           list: {
             title: 'Список товаров',
@@ -333,6 +388,37 @@ export const resources = {
         CartScreen: {
           list: {
             title: 'Корзина товаров',
+            empty: 'В корзине пусто. Выберите интересующие Вас товары',
+          },
+          buttons: {
+            add: {
+              name: 'В корзину',
+              title: 'Добавить в корзину',
+            },
+          },
+        },
+        AdminScreen: {
+          title: 'Администрирование',
+          buttons: {
+            generateOperations: {
+              name: 'Генерация 5 случайных операций (моки)',
+              title: 'Генерация случайных операций',
+            },
+            generateProducts: {
+              name: 'Генерация 5 случайных продуктов (моки)',
+              title: 'Генерация случайных продуктов',
+            },
+            addNewOperationItem: {
+              name: 'Добавление операции',
+              title: 'Добавление новой операции',
+            },
+            addNewProductItem: {
+              name: 'Добавление товара',
+              title: 'Добавление нового товара',
+            },
+          },
+          messages: {
+            createRandomItemsMessage: 'Генерация данных завершена успешно',
           },
         },
       },

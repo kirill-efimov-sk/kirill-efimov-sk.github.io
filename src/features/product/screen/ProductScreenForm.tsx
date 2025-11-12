@@ -1,5 +1,5 @@
 // OperationScreenForm.tsx
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { Button } from 'antd';
@@ -9,60 +9,57 @@ import { ProductFormValues } from '../../forms/productForm/types';
 import { useProductForm } from '../../../hooks/forms/useProductForm';
 import styles from './productScreenForm.module.scss';
 
-const initOperation = {
-  category: 'test',
-  description: 'test',
-  name: 'test',
-  price: 1000,
+const initialItem = {
+  id: '',
+  category: '',
+  description: '',
+  name: '',
+  price: 0,
   image: { url: '', title: '' },
 };
 
 export interface ProductFormProps {
-  initialOperation?: ProductFormValues;
+  initialProduct?: ProductFormValues;
+  closeModal?: () => void;
 }
 
-export const ProductScreenForm: React.FC<ProductFormProps> = ({ initialOperation = initOperation }) => {
-  const { t } = useTranslation();
-
-  const { initialValues, onSubmit, validate, loading } = useProductForm(initialOperation);
-
+export const ProductScreenForm: React.FC<ProductFormProps> = ({ initialProduct = initialItem, closeModal }) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const { t } = useTranslation();
+  const { initialValues, onSubmit, validate, loading } = useProductForm({
+    initialProduct,
+  });
 
   const formManager = useFormik<ProductFormValues>({
     initialValues,
     onSubmit: async (values, helpers) => {
       try {
         if (selectedFile) {
-          values.image.title = selectedFile.name;
-          console.log(selectedFile);
+          values.file = selectedFile;
         }
 
         // Вызываем оригинальный onSubmit
         await onSubmit(values, helpers);
       } catch (error) {
+        console.error('Form submission error:', error);
         helpers.setSubmitting(false);
+
+        return;
       }
+
+      if (closeModal) closeModal();
     },
     validate,
+    enableReinitialize: true,
   });
 
-  const { submitForm, setValues } = formManager;
-
-  useEffect(() => {
-    setValues({
-      name: initialOperation.name,
-      description: initialOperation.description,
-      category: initialOperation.category,
-      price: initialOperation.price,
-      image: initialOperation.image,
-    });
-  }, [initialOperation, setValues]);
+  const { submitForm, isSubmitting } = formManager;
 
   return (
     <div className={styles.container}>
       <Title className={styles.title}>{t('screens.ProductScreen.edit.title')}</Title>
       <UserForms.ProductForm formManager={formManager} onFileSelect={setSelectedFile} selectedFile={selectedFile} />
-      <Button type="primary" onClick={submitForm} style={{ marginTop: '16px' }} loading={loading}>
+      <Button type="primary" onClick={submitForm} loading={loading || isSubmitting}>
         {t('screens.ProductScreen.edit.save')}
       </Button>
     </div>

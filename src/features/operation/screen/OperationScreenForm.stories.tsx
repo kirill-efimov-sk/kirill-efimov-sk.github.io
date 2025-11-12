@@ -1,5 +1,6 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
+import { uid } from 'uid';
 import { OperationScreenForm, OperationFormProps } from './OperationScreenForm';
 
 const meta: Meta<typeof OperationScreenForm> = {
@@ -7,6 +8,7 @@ const meta: Meta<typeof OperationScreenForm> = {
   component: OperationScreenForm,
   argTypes: {
     initialOperation: {
+      id: 'string',
       category: 'string',
       date: 'string',
       description: 'string',
@@ -23,6 +25,7 @@ export const DefaultOperationForm: Story = {
   render: (args: OperationFormProps) => <OperationScreenForm {...args} />,
   args: {
     initialOperation: {
+      id: uid(18),
       category: 'Категория операции',
       date: new Date().toLocaleDateString('en-CA', { year: 'numeric', month: '2-digit', day: '2-digit' }),
       description: 'Описание операции',

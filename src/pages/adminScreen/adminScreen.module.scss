@@ -1,4 +1,25 @@
-.root {
+.container {
+  margin: 25px;
+  padding: 15px;
+}
+
+.title {
+  font-size: 20px;
+}
+
+.operations {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   text-align: center;
-  padding: 50px;
+  ol {
+    text-align: left;
+    padding: 0 0 0 15px;
+    li {
+      margin: 10px 0;
+      &:hover {
+        color: #1677ff;
+      }
+    }
+  }
 }

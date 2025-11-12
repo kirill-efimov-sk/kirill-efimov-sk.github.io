@@ -1,12 +1,27 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import { Product } from 'src/utils/dataListGenerator';
 import { RootState } from '../index';
 
+export type ProductsState = Product[];
+
+const initialState: ProductsState = [];
+
 export const productsSlice = createSlice({
   name: 'products',
-  initialState: null,
+  initialState,
   reducers: {
-    set: (_, action: { payload: Product[]; type: string }) => action.payload,
+    set: (_, action: PayloadAction<ProductsState>) => action.payload,
+    add: (state, action: PayloadAction<ProductsState>) => [...state, ...action.payload],
+    update: (state, action: PayloadAction<Product>) => {
+      const index = state.findIndex((item) => item.id === action.payload.id);
+
+      if (index !== -1) {
+        state[index] = {
+          ...state[index],
+          ...action.payload,
+        };
+      }
+    },
   },
 });
 

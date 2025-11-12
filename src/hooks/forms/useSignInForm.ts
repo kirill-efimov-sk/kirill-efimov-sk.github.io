@@ -66,7 +66,6 @@ export const useSignInForm = (
     async (values: AuthFormValues, { resetForm }: { resetForm: () => void }) => {
       try {
         setLoading(true);
-        console.log('Submitting sign in:', values);
 
         //Имитация API-запроса
         await new Promise((resolve) =>
@@ -79,7 +78,7 @@ export const useSignInForm = (
                 profileActions.set({
                   name: values.username,
                   about: '',
-                  rights: { editing: values.username.includes('admin') ? true : false },
+                  rights: { editing: values.username.toLowerCase().includes('admin') ? true : false },
                 })
               );
 

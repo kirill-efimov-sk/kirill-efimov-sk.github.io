@@ -4,17 +4,17 @@ import styles from './counterInput.module.scss';
 
 export interface CounterInputProps {
   value: number;
-  onChange: React.Dispatch<React.SetStateAction<number>>;
+  onChange: (value: number) => void;
 }
 
 export const CounterInput: FC<CounterInputProps> = ({ value, onChange }) => {
-  const handleIncrement = () => onChange((prev) => prev + 1);
-  const handleDecrement = () => onChange((prev) => (prev > 0 ? prev - 1 : 0));
+  const handleIncrement = () => onChange(value + 1);
+  const handleDecrement = () => onChange(value > 0 ? value - 1 : 0);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(e.target.value, 10);
-    if (!isNaN(value) && value >= 0) {
-      onChange(value);
+    const newValue = parseInt(e.target.value, 10);
+    if (!isNaN(newValue) && newValue >= 0) {
+      onChange(newValue);
     }
   };
 
