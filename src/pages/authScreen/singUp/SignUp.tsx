@@ -6,20 +6,17 @@ import { UserForms } from '../../../features/forms';
 import { Title } from '../../../shared/title';
 import { AuthFormValues } from '../../../features/forms/authForm/types';
 import { useSignUpForm } from '../../../hooks/forms/useSignUpForm';
+import { AuthScreenFormProps } from '../types';
 import styles from './signUp.module.scss';
 
 const initUserdata = {
-  username: '',
+  email: '',
   password: '',
   repeatPassword: '',
+  requestType: '',
 };
 
-export interface SignUpFormProps {
-  initialUserData?: AuthFormValues;
-  children?: React.ReactNode;
-}
-
-export const SignUpScreenForm: React.FC<SignUpFormProps> = ({ initialUserData = initUserdata, children }) => {
+export const SignUpScreenForm: React.FC<AuthScreenFormProps> = ({ initialUserData = initUserdata, children }) => {
   const { t } = useTranslation();
 
   const { initialValues, onSubmit, validate, loading } = useSignUpForm(initialUserData);
@@ -34,18 +31,19 @@ export const SignUpScreenForm: React.FC<SignUpFormProps> = ({ initialUserData = 
 
   useEffect(() => {
     setValues({
-      username: initialUserData.username,
+      email: initialUserData.email,
       password: initialUserData.password,
       repeatPassword: initialUserData.repeatPassword,
+      requestType: 'RTQ',
     });
   }, [initialUserData, setValues]);
 
   return (
-    <div className={`${styles.container}`}>
-      <Title className={`${styles.title}`}>{t('screens.AuthScreen.signUp.title')}</Title>
+    <div className={styles.container}>
+      <Title className={styles.title}>{t('screens.AuthScreen.signUp.title')}</Title>
       <UserForms.AuthForm formManager={formManager} repeatPassword={true} />
-      <Button type="primary" onClick={submitForm} style={{ marginTop: '16px' }} loading={loading}>
-        {t('screens.AuthScreen.signUp.submit')}
+      <Button className={styles.button} type="primary" onClick={submitForm} loading={loading}>
+        {`${t('screens.AuthScreen.signUp.submit')}`}
       </Button>
       {children}
     </div>

@@ -1,13 +1,14 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import { SignUpScreenForm, SignUpFormProps } from './SignUp';
+import { SignUpScreenForm } from './SignUp';
+import { AuthScreenFormProps } from '../types';
 
 const meta: Meta<typeof SignUpScreenForm> = {
   title: 'Feature/Forms/Auth/SignUp',
   component: SignUpScreenForm,
   argTypes: {
     initialUserData: {
-      username: 'string',
+      email: 'string',
       password: 'string',
       repeatPassword: 'string',
     },
@@ -18,10 +19,10 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const SignUpForm: Story = {
-  render: (args: SignUpFormProps) => <SignUpScreenForm {...args} />,
+  render: (args: AuthScreenFormProps) => <SignUpScreenForm {...args} />,
   args: {
     initialUserData: {
-      username: '',
+      email: '',
       password: '',
       repeatPassword: '',
     },

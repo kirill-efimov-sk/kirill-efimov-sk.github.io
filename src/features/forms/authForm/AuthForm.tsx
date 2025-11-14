@@ -12,15 +12,15 @@ export const AuthForm = memo<AuthFormProps>(
     return (
       <form ref={formElement} onSubmit={handleSubmit} className={cn(style.root, className)}>
         <UsernameField
-          name="username"
+          name="email"
           onPressEnter={submitForm}
           autoFocusElement={autoFocusElement}
           onBlur={handleBlur}
           onChange={handleChange}
-          value={values.username}
-          errors={errors.username}
+          value={values.email}
+          errors={errors.email}
           submitCount={submitCount}
-          touched={touched.username}
+          touched={touched.email}
           disabled={disabled}
         />
         <PasswordField
