@@ -116,12 +116,14 @@ export const resources = {
             title: 'Authorization',
             submit: 'Sign in',
             question: 'Already have an account?',
+            error: 'Authorization error',
           },
           signUp: {
             success: 'Registration completed successfully',
             title: 'Registration',
             submit: 'Sign up',
             question: 'Not registered yet?',
+            error: 'Registration error',
           },
           logout: {
             success: 'Logout completed successfully',
@@ -328,12 +330,14 @@ export const resources = {
             title: 'Авторизация',
             submit: 'Войти',
             question: 'Уже есть аккаунт?',
+            error: 'Ошибка авторизации',
           },
           signUp: {
             success: 'Регистрация завершена успешно',
             title: 'Регистрация',
             submit: 'Зарегистрироваться',
             question: 'Еще не зарегистрированы?',
+            error: 'Ошибка регистрации',
           },
           logout: {
             success: 'Выход осуществлен успешно',

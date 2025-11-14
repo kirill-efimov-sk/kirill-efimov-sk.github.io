@@ -1,4 +1,4 @@
-import { useMemo, useState, useCallback } from 'react';
+import { useMemo, useCallback } from 'react';
 import { FormikConfig } from 'formik/dist';
 import { useTranslation } from 'react-i18next';
 import { message } from 'antd';
@@ -8,24 +8,24 @@ import { regex } from '../../utils/regex';
 import { isLongEnough, isNotDefinedString } from '../../utils/validation';
 import { tokenActions } from 'src/app/store/slices/token';
 import { profileActions } from 'src/app/store/slices/profile';
+import { api } from 'src/app/store/rtq';
+import { EMAIL_REGEX } from 'src/app/constants/regex';
+import { ApiErrorType } from 'src/app/store/rtq/authApi';
 
 export interface SignInFormProps {
   initialAuthData?: AuthFormValues;
 }
 
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const TOKEN_FAKE = '13ewefe534tfscaewtgvfcdas';
-
 export const useSignInForm = (
   initialAuthData: AuthFormValues
 ): Pick<FormikConfig<AuthFormValues>, 'onSubmit' | 'validate' | 'initialValues'> & { loading: boolean } => {
   const { t } = useTranslation();
-  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
+  const [signIn, { isLoading: loading }] = api.auth.useSignInMutation();
 
   const initialValues = useMemo(
     () => ({
-      username: initialAuthData.username ?? '',
+      email: initialAuthData.email ?? '',
       password: initialAuthData.password ?? '',
     }),
     [initialAuthData]
@@ -36,16 +36,16 @@ export const useSignInForm = (
       const errors: Partial<AuthFormErrors> = {};
       const symbols = '#&/\\|{}[]';
 
-      if (isNotDefinedString(values.username)) {
-        errors.username = t(`errors.is_required`);
-      } else if (!EMAIL_REGEX.test(values.username.trim())) {
-        errors.username = t('errors.invalid_email');
+      if (isNotDefinedString(values.email)) {
+        errors.email = t(`errors.is_required`);
+      } else if (!EMAIL_REGEX.test(values.email.trim())) {
+        errors.email = t('errors.invalid_email');
       }
       if (!isLongEnough(values.password, 8)) {
         errors.password = t(`errors.password_to_small`);
       }
 
-      const fields: (keyof AuthFormValues)[] = ['username', 'password'];
+      const fields: (keyof AuthFormValues)[] = ['email', 'password'];
       fields.forEach((field) => {
         const value = values[field];
         const strValue = value?.toString();
@@ -65,36 +65,28 @@ export const useSignInForm = (
   const onSubmit = useCallback(
     async (values: AuthFormValues, { resetForm }: { resetForm: () => void }) => {
       try {
-        setLoading(true);
+        const result = await signIn({
+          email: values.email,
+          password: values.password,
+        }).unwrap();
 
-        //Имитация API-запроса
-        await new Promise((resolve) =>
-          setTimeout(() => {
-            resolve;
-
-            if (TOKEN_FAKE) {
-              dispatch(tokenActions.set(TOKEN_FAKE));
-              dispatch(
-                profileActions.set({
-                  name: values.username,
-                  about: '',
-                  rights: { editing: values.username.toLowerCase().includes('admin') ? true : false },
-                })
-              );
-
-              message.success(t('screens.AuthScreen.signIn.success'));
-            }
-          }, 1000)
+        message.success(t('screens.AuthScreen.signIn.success'));
+        dispatch(tokenActions.set(result.token));
+        dispatch(
+          profileActions.set({
+            name: values.email,
+            about: '',
+            rights: { editing: values.email.toLowerCase().includes('admin') ? true : false },
+          })
         );
 
         resetForm();
       } catch (error) {
-        message.error(t('screens.AuthScreen.signIn.error'));
-      } finally {
-        setLoading(false);
+        const status = (error as ApiErrorType)?.status;
+        message.error(`${t('screens.AuthScreen.signIn.error')}${status ? ` (${status})` : ''}`);
       }
     },
-    [t, dispatch]
+    [signIn, dispatch, t]
   );
 
   return {

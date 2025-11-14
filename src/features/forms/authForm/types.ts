@@ -1,9 +1,10 @@
 import { FormProps } from 'src/features/forms/types';
 
 export type AuthFormValues = {
-  username: string;
+  email: string;
   password: string;
   repeatPassword?: string;
+  requestType?: string;
 };
 
 export type AuthFormErrors = Record<keyof AuthFormValues, string>;
