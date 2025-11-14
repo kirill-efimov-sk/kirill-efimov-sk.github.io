@@ -1,8 +1,8 @@
-import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
+import React, { FC } from 'react';
 import { OperationDetailCard } from 'src/features/operation/detailCard';
 import { OperationCard } from 'src/features/operation/card';
 import { Loader } from 'src/shared/loaders/intersactionObserver';
-import { useIntersectionObserver } from 'src/hooks/useIntersactionObserver';
+import { useIntersactionObserverScroll } from 'src/hooks/useIntersactionObserverScroll';
 import { Operation } from 'src/utils/dataListGenerator';
 import styles from './operationList.module.scss';
 
@@ -12,33 +12,10 @@ interface OperationListProps {
 }
 
 export const OperationListRender: FC<OperationListProps> = ({ operations, onLoadMore }) => {
-  const [isLoading, setIsLoading] = useState(false);
-  const observerTarget = useRef<HTMLDivElement>(null);
-  const timeoutRef = useRef<number | null>(null);
-  const { startObserving, stopObserving } = useIntersectionObserver(observerTarget);
-
-  const handleLoadMore = useCallback(async () => {
-    setIsLoading(true);
-
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-
-    timeoutRef.current = window.setTimeout(() => {
-      onLoadMore();
-      setIsLoading(false);
-    }, 250);
-  }, [onLoadMore]);
-
-  useEffect(() => {
-    startObserving(handleLoadMore);
-    return () => {
-      stopObserving();
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-    };
-  }, [startObserving, stopObserving, handleLoadMore]);
+  const { isLoading, observerTarget } = useIntersactionObserverScroll({
+    onLoadMore,
+    delay: 250,
+  });
 
   return (
     <>
@@ -49,11 +26,14 @@ export const OperationListRender: FC<OperationListProps> = ({ operations, onLoad
               <OperationDetailCard
                 key={operation.id}
                 cardId={`operation-${operation.id}`}
-                price={operation.amount}
-                category={operation.category.name}
-                name={operation.name}
-                description={operation.desc}
-                date={new Date(operation.createdAt)}
+                operation={{
+                  id: operation.id,
+                  price: operation.amount,
+                  category: operation.category.name,
+                  name: operation.name,
+                  description: operation.desc,
+                  date: operation.createdAt,
+                }}
               />
             );
           }
@@ -61,10 +41,13 @@ export const OperationListRender: FC<OperationListProps> = ({ operations, onLoad
             <OperationCard
               key={operation.id}
               cardId={`operation-${operation.id}`}
-              price={operation.amount}
-              category={operation.category.name}
-              name={operation.name}
-              description={operation.desc}
+              operation={{
+                id: operation.id,
+                price: operation.amount,
+                category: operation.category.name,
+                name: operation.name,
+                description: operation.desc,
+              }}
             />
           );
         })}

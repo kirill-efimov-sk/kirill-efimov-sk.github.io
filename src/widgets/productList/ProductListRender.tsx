@@ -1,7 +1,7 @@
-import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
+import React, { FC } from 'react';
 import { ProductCard } from 'src/features/product/card';
 import { Loader } from 'src/shared/loaders/intersactionObserver';
-import { useIntersectionObserver } from 'src/hooks/useIntersactionObserver';
+import { useIntersactionObserverScroll } from 'src/hooks/useIntersactionObserverScroll';
 import { Product } from 'src/utils/dataListGenerator';
 import styles from './productList.module.scss';
 
@@ -11,51 +11,16 @@ interface ProductListRenderProps {
 }
 
 export const ProductListRender: FC<ProductListRenderProps> = ({ products, onLoadMore }) => {
-  const [isLoading, setIsLoading] = useState(false);
-  const observerTarget = useRef<HTMLDivElement>(null);
-  const timeoutRef = useRef<number | null>(null);
-  const { startObserving, stopObserving } = useIntersectionObserver(observerTarget);
-
-  const handleLoadMore = useCallback(async () => {
-    setIsLoading(true);
-
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-
-    timeoutRef.current = window.setTimeout(() => {
-      onLoadMore();
-      setIsLoading(false);
-    }, 250);
-  }, [onLoadMore]);
-
-  useEffect(() => {
-    startObserving(handleLoadMore);
-    return () => {
-      stopObserving();
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-    };
-  }, [startObserving, stopObserving, handleLoadMore]);
+  const { isLoading, observerTarget } = useIntersactionObserverScroll({
+    onLoadMore,
+    delay: 250,
+  });
 
   return (
     <>
       <div className={styles.productList}>
         {products.map((product) => {
-          return (
-            <ProductCard
-              key={product.id}
-              description={product.desc}
-              price={product.price}
-              name={product.name}
-              cardId={product.id}
-              image={{
-                url: product.foto,
-                title: 'Изображение товара',
-              }}
-            ></ProductCard>
-          );
+          return <ProductCard key={product.id} product={product} cardId={product.id}></ProductCard>;
         })}
       </div>
       {/* Добавляем триггерный элемент для подгрузки */}

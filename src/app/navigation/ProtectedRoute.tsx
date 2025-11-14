@@ -1,18 +1,23 @@
-import React, { FC } from 'react';
-import { Navigate } from 'react-router-dom';
+import React, { FC, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { Navigate, useLocation } from 'react-router-dom';
+import { tokenSelectors } from 'src/app/store/slices/token';
+import { useScrollReset } from 'src/hooks/useScrollReset';
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
   redirectPath?: string;
 }
 
-export const ProtectedRoute: FC<ProtectedRouteProps> = ({ children, redirectPath = '/auth' }) => {
-  // позднее сюда нужно добавить вызов хука для получения данных об успешности аунтификации
-  const token = true;
-  // пока нет auth Navigation по пути * перебросит на /home!
-  if (!token) {
-    return <Navigate to={redirectPath} replace />;
-  }
+export const ProtectedRoute: FC<ProtectedRouteProps> = ({ children, redirectPath = '/auth/signIn' }) => {
+  const token = useSelector(tokenSelectors.get);
+  const location = useLocation();
+  const resetScroll = useScrollReset();
 
-  return <>{children}</>;
+  useEffect(() => {
+    resetScroll();
+  }, [location.pathname, resetScroll]);
+
+  if (token) return <>{children}</>;
+  return <Navigate to={`${redirectPath}?next=${location.pathname}`} replace />;
 };

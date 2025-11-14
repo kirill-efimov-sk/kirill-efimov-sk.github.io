@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { Button } from 'antd';
@@ -9,44 +9,48 @@ import { useOperationForm } from '../../../hooks/forms/useOperationForm';
 import styles from './operationScreenForm.module.scss';
 
 const initOperation = {
-  category: 'test',
-  date: '2025-01-01',
-  description: 'test',
-  name: 'test',
-  price: 100,
+  id: '',
+  category: '',
+  date: '',
+  description: '',
+  name: '',
+  price: 0,
 };
 
 export interface OperationFormProps {
   initialOperation?: OperationFormValues;
+  closeModal?: () => void;
 }
 
-export const OperationScreenForm: React.FC<OperationFormProps> = ({ initialOperation = initOperation }) => {
+export const OperationScreenForm: React.FC<OperationFormProps> = ({ initialOperation = initOperation, closeModal }) => {
   const { t } = useTranslation();
-
   const { initialValues, onSubmit, validate, loading } = useOperationForm(initialOperation);
 
   const formManager = useFormik<OperationFormValues>({
     initialValues,
-    onSubmit,
-    validate,
-  });
-  const { submitForm, setValues } = formManager;
+    onSubmit: async (values, helpers) => {
+      try {
+        // Вызываем оригинальный onSubmit
+        await onSubmit(values, helpers);
+      } catch (error) {
+        console.error('Form submission error:', error);
+        helpers.setSubmitting(false);
 
-  useEffect(() => {
-    setValues({
-      name: initialOperation.name,
-      description: initialOperation.description,
-      category: initialOperation.category,
-      price: initialOperation.price,
-      date: initialOperation.date,
-    });
-  }, [initialOperation, setValues]);
+        return;
+      }
+
+      if (closeModal) closeModal();
+    },
+    validate,
+    enableReinitialize: true,
+  });
+  const { submitForm, isSubmitting } = formManager;
 
   return (
     <div className={`${styles.container}`}>
       <Title className={`${styles.title}`}>{t('screens.OperationScreen.edit.title')}</Title>
       <UserForms.OperationForm formManager={formManager} />
-      <Button type="primary" onClick={submitForm} style={{ marginTop: '16px' }} loading={loading}>
+      <Button type="primary" onClick={submitForm} loading={loading || isSubmitting}>
         {t('screens.OperationScreen.edit.save')}
       </Button>
     </div>

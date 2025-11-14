@@ -70,7 +70,6 @@ export const useSignUpForm = (
     async (values: AuthFormValues, { resetForm }: { resetForm: () => void }) => {
       try {
         setLoading(true);
-        console.log('Submitting sign up:', values);
 
         //Имитация API-запроса
         await new Promise((resolve) => setTimeout(resolve, 1000));

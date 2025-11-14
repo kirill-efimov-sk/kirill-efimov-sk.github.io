@@ -6,15 +6,20 @@ const meta: Meta<typeof ProductDetailCard> = {
   title: 'Feature/Product/ProductDetailCard',
   component: ProductDetailCard,
   argTypes: {
-    cardId: { type: 'string' },
-    price: { type: 'number' },
-    image: {
-      url: { type: 'string' },
-      title: { type: 'string' },
+    product: {
+      id: 'string',
+      name: 'string',
+      foto: 'string',
+      desc: 'string',
+      price: 'number',
+      createdAt: 'string',
+      category: {
+        id: 'string',
+        name: 'string',
+        foto: 'string',
+      },
     },
-    name: { type: 'string' },
-    category: { type: 'string' },
-    description: { type: 'string' },
+    cardId: { type: 'string' },
   },
 };
 
@@ -24,14 +29,20 @@ type Story = StoryObj<typeof meta>;
 export const ProductDetailCardComponent: Story = {
   render: (args: ProductDetailCardProps) => <ProductDetailCard {...args} />,
   args: {
-    name: 'Product name',
-    description: 'Product description',
-    category: 'Product category',
-    image: {
-      url: 'https://sun9-78.userapi.com/impg/c856028/v856028314/1e0892/BfL4I39V-pU.jpg?size=484x704&quality=96&sign=1a77918b549f5f7f032b085182c198c4&type=album',
-      title: 'Product',
+    product: {
+      id: '200sgdfdgfsdwt4yhgdvscasd',
+      name: 'Product name',
+      foto: 'https://sun9-78.userapi.com/impg/c856028/v856028314/1e0892/BfL4I39V-pU.jpg?size=484x704&quality=96&sign=1a77918b549f5f7f032b085182c198c4&type=album',
+      desc: 'Product description (max 100 char)',
+      price: 100,
+      createdAt: '',
+      category: {
+        id: '',
+        name: '',
+        foto: '',
+      },
     },
-    price: 0,
+    cardId: '200asdgfhtjhgesfdcasde',
   },
   tags: ['autodocs'],
 };

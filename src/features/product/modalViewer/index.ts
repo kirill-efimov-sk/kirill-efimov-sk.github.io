@@ -1,0 +1,1 @@
+export { ProductModalViewer } from './ProductModalViewer';

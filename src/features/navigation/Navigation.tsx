@@ -2,9 +2,11 @@ import React, { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ShoppingOutlined } from '@ant-design/icons';
-import styles from './navigationPanel.module.scss';
+import { Logout } from '../logout';
+import { ProxyAdminRights, ProxyAuthRights } from 'src/app/proxy/accessRights';
+import styles from './navigation.module.scss';
 
-export const NavigationPanel: FC = () => {
+export const Navigation: FC = () => {
   const { t } = useTranslation();
 
   return (
@@ -16,14 +18,28 @@ export const NavigationPanel: FC = () => {
         <NavLink to="/products" className={({ isActive }) => (isActive ? styles.active : '')}>
           <span className={styles.name}>{t('header.routes.products')}</span>
         </NavLink>
+        <ProxyAuthRights>
+          <ProxyAdminRights>
+            <NavLink to="/administration" className={({ isActive }) => (isActive ? styles.active : '')}>
+              <span className={styles.name}>{t('header.routes.over')}</span>
+            </NavLink>
+          </ProxyAdminRights>
+        </ProxyAuthRights>
       </div>
       <div className={styles.navigateRight}>
-        <NavLink to="/profile" className={({ isActive }) => (isActive ? styles.active : '')}>
-          <span className={styles.name}>{t('header.routes.profile')}</span>
-        </NavLink>
+        <ProxyAuthRights>
+          <NavLink to="/profile" className={({ isActive }) => (isActive ? styles.active : '')}>
+            <span className={styles.name}>{t('header.routes.profile')}</span>
+          </NavLink>
+        </ProxyAuthRights>
         <NavLink to="/cart" className={({ isActive }) => (isActive ? styles.active : '')}>
           <ShoppingOutlined className={styles.cart} title={t('header.routes.cart')} />
         </NavLink>
+        <ProxyAuthRights>
+          <NavLink to="/auth">
+            <Logout />
+          </NavLink>
+        </ProxyAuthRights>
       </div>
     </div>
   );

@@ -1,7 +1,10 @@
 import { FormProps } from 'src/features/forms/types';
 import { BaseCardProps, CardCategoryProps, CardImageProps } from 'src/shared/card/card.types';
 
-export interface ProductFormValues extends Omit<BaseCardProps, 'children'>, CardCategoryProps, CardImageProps {}
+export interface ProductFormValues extends Omit<BaseCardProps, 'children'>, CardCategoryProps, CardImageProps {
+  id: string;
+  file?: File | null;
+}
 
 export type ProductFormErrors = Record<keyof ProductFormValues, string>;
 export type ProductFormTouched = Record<keyof ProductFormValues, boolean>;

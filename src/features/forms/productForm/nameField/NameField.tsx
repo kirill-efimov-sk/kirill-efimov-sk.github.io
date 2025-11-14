@@ -8,7 +8,7 @@ import { getValidates } from '../../../../utils/validation';
 import { ProductFormProps } from '../types';
 import styles from './nameField.module.scss';
 
-export type NameFieldProps = Pick<ProductFormProps, 'className' | 'disabled'> & {
+export type NameFieldProps = Pick<ProductFormProps, 'className' | 'disabled' | 'autoFocusElement'> & {
   submitCount: number;
   touched: boolean;
   errors: string;
@@ -18,7 +18,7 @@ export type NameFieldProps = Pick<ProductFormProps, 'className' | 'disabled'> & 
 };
 
 export const NameField = memo<NameFieldProps>(
-  ({ className, onChange, onBlur, touched, value, errors, disabled, submitCount }) => {
+  ({ className, onChange, onBlur, autoFocusElement, touched, value, errors, disabled, submitCount }) => {
     const { t } = useTranslation();
 
     const { validateStatus, help } = getValidates(errors, touched, submitCount);
@@ -33,6 +33,7 @@ export const NameField = memo<NameFieldProps>(
       >
         <Input
           disabled={disabled}
+          ref={autoFocusElement}
           data-cy="input-name"
           autoFocus
           name="name"

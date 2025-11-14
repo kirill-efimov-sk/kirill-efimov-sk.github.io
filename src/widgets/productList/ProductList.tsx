@@ -1,24 +1,22 @@
-import React, { FC, useCallback, useState } from 'react';
+import React, { FC } from 'react';
+import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Title } from 'src/shared/title';
 import { ProductListRender } from './ProductListRender';
-import { useDataGenerator } from 'src/hooks/useDataGenerator';
-import { Product } from 'src/utils/dataListGenerator';
+import { productsSelectors, ProductsState } from 'src/app/store/slices/products';
+import { useIntersactionObserverLoader } from 'src/hooks/useIntersactionObserverLoader';
 import styles from './productList.module.scss';
 
 export const ProductList: FC = () => {
   const { t } = useTranslation();
-  const { createProducts } = useDataGenerator();
-  const [products, setProducts] = useState<Product[]>(() => createProducts(5));
+  const products: ProductsState = useSelector(productsSelectors.get);
 
-  const handleLoadMore = useCallback(() => {
-    setProducts((prev) => [...prev, ...createProducts(5)]);
-  }, [createProducts]);
+  const { visibleItems, handleLoadMore } = useIntersactionObserverLoader(products);
 
   return (
     <div className={styles.products}>
       <Title className={`${styles.title}`}>{t('screens.ProductScreen.list.title')}</Title>
-      <ProductListRender products={products} onLoadMore={handleLoadMore}></ProductListRender>
+      <ProductListRender products={visibleItems} onLoadMore={handleLoadMore}></ProductListRender>
     </div>
   );
 };

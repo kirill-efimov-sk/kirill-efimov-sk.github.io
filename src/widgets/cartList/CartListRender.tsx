@@ -1,62 +1,42 @@
-import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
+import React, { FC, useMemo } from 'react';
 import { ProductItem } from 'src/features/cart/ui/productItem';
 import { Loader } from 'src/shared/loaders/intersactionObserver';
-import { useIntersectionObserver } from 'src/hooks/useIntersactionObserver';
-import { Product } from 'src/utils/dataListGenerator';
+import { useIntersactionObserverScroll } from 'src/hooks/useIntersactionObserverScroll';
+import { CartProductItemProps } from 'src/pages/cartScreen';
 import styles from './cartList.module.scss';
 
 interface CartListRenderProps {
-  products: Product[];
+  products: CartProductItemProps[];
   onLoadMore: () => void;
 }
 
 export const CartListRender: FC<CartListRenderProps> = ({ products, onLoadMore }) => {
-  const [isLoading, setIsLoading] = useState(false);
-  const observerTarget = useRef<HTMLDivElement>(null);
-  const timeoutRef = useRef<number | null>(null);
-  const { startObserving, stopObserving } = useIntersectionObserver(observerTarget);
+  const { isLoading, observerTarget } = useIntersactionObserverScroll({
+    onLoadMore,
+    delay: 250,
+  });
 
-  const handleLoadMore = useCallback(async () => {
-    setIsLoading(true);
-
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-
-    timeoutRef.current = window.setTimeout(() => {
-      onLoadMore();
-      setIsLoading(false);
-    }, 250);
-  }, [onLoadMore]);
-
-  useEffect(() => {
-    startObserving(handleLoadMore);
-    return () => {
-      stopObserving();
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-    };
-  }, [startObserving, stopObserving, handleLoadMore]);
+  const memoizedCartItems = useMemo(() => {
+    return products.map((product) => {
+      return (
+        <ProductItem
+          key={product.id}
+          cardId={product.id}
+          image={{
+            url: product.foto,
+            title: 'Изображение товара',
+          }}
+          price={product.price}
+          name={product.name}
+          quantity={product.quantity}
+        />
+      );
+    });
+  }, [products]);
 
   return (
     <>
-      <div className={styles.cartList}>
-        {products.map((product) => {
-          return (
-            <ProductItem
-              key={product.id}
-              image={{
-                url: product.foto,
-                title: 'Изображение товара',
-              }}
-              price={product.price}
-              name={product.name}
-              quantity={1}
-            />
-          );
-        })}
-      </div>
+      <div className={styles.cartList}>{memoizedCartItems}</div>
       {/* Добавляем триггерный элемент для подгрузки */}
       <Loader isLoading={isLoading} targetRef={observerTarget} />
     </>

@@ -44,7 +44,6 @@ export const PriceField = memo<PriceFieldProps>(
         <InputNumber
           disabled={disabled}
           data-cy="input-price"
-          autoFocus
           name="price"
           onChange={handleChange}
           onBlur={onBlur}

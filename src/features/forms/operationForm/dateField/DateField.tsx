@@ -18,6 +18,8 @@ export type DateFieldProps = Pick<OperationFormProps, 'className' | 'disabled'> 
   onBlur: FormikHandlers['handleBlur'];
 };
 
+const dateFormat = 'YYYY-MM-DD';
+
 export const DateField = memo<DateFieldProps>(
   ({ className, onChange, onBlur, touched, value, errors, disabled, submitCount }) => {
     const { t } = useTranslation();
@@ -26,7 +28,7 @@ export const DateField = memo<DateFieldProps>(
       const event = {
         target: {
           name: 'date',
-          value: date ? date.format('YYYY-MM-DD') : '',
+          value: date ? date.format(dateFormat) : null,
         },
       };
       onChange(event);
@@ -41,7 +43,6 @@ export const DateField = memo<DateFieldProps>(
       onBlur(event);
     };
 
-    const dateFormat = 'YYYY-MM-DD';
     const { validateStatus, help } = getValidates(errors, touched, submitCount);
 
     return (
@@ -56,7 +57,6 @@ export const DateField = memo<DateFieldProps>(
           <DatePicker
             disabled={disabled}
             data-cy="input-date"
-            autoFocus
             name="date"
             onChange={handleChange}
             onBlur={handleBlur}

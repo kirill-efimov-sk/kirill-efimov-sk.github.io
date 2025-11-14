@@ -1,22 +1,31 @@
 import React, { FC } from 'react';
 import { Card } from '../../../shared/card';
 import { AddToCart } from '../../cart/buttons/addToCart';
-import { BaseCardProps, CardIdProps, CardCategoryProps, CardImageProps } from 'src/shared/card/card.types';
+import { CardIdProps } from '../../../shared/card/card.types';
+import { Product } from '../../../utils/dataListGenerator';
 
-export interface ProductDetailCardProps
-  extends BaseCardProps,
-    CardIdProps,
-    Required<CardCategoryProps>,
-    Required<CardImageProps> {}
+export interface ProductDetailCardProps extends CardIdProps {
+  product: Product;
+}
 
 export const ProductDetailCard: FC<ProductDetailCardProps> = React.memo(
-  ({ price, image, category, name, description }): React.JSX.Element => {
+  ({ product }): React.JSX.Element => {
     return (
       <Card.Container type={'block'}>
-        <Card.Image image={image} />
-        <Card.Content price={price} category={category} name={name} description={description} />
+        <Card.Image
+          image={{
+            url: product.foto,
+            title: 'Изображение товара',
+          }}
+        />
+        <Card.Content
+          price={product.price}
+          category={product.category.name}
+          name={product.name}
+          description={product.desc}
+        />
         <Card.Actions>
-          <AddToCart count={0} />
+          <AddToCart count={0} product={product} />
         </Card.Actions>
       </Card.Container>
     );

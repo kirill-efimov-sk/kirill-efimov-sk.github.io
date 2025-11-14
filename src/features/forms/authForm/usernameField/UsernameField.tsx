@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import cn from 'clsx';
-import { Input } from 'antd';
+import Input from 'antd/lib/input';
 import { FormikHandlers } from 'formik/dist';
 import { UserOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
@@ -14,6 +14,7 @@ export type UsernameFieldProps = Pick<AuthFormProps, 'className' | 'disabled' | 
   touched: boolean;
   errors: string;
   value: string;
+  name: string;
   onPressEnter: () => void;
   onChange: FormikHandlers['handleChange'];
   onBlur: FormikHandlers['handleBlur'];
@@ -22,7 +23,19 @@ export type UsernameFieldProps = Pick<AuthFormProps, 'className' | 'disabled' | 
 const prefix = <UserOutlined />;
 
 export const UsernameField = memo<UsernameFieldProps>(
-  ({ className, onChange, onBlur, onPressEnter, autoFocusElement, touched, value, errors, disabled, submitCount }) => {
+  ({
+    className,
+    onChange,
+    onBlur,
+    onPressEnter,
+    autoFocusElement,
+    touched,
+    value,
+    name,
+    errors,
+    disabled,
+    submitCount,
+  }) => {
     const { t } = useTranslation();
 
     const { validateStatus, help } = getValidates(errors, touched, submitCount);
@@ -37,13 +50,13 @@ export const UsernameField = memo<UsernameFieldProps>(
       >
         <Input
           prefix={prefix}
-          disabled={disabled}
           ref={autoFocusElement}
           onPressEnter={onPressEnter}
-          data-cy="input-username"
+          disabled={disabled}
+          data-cy={`input-${name}`}
+          name={name}
           autoFocus
           type="email"
-          name="username"
           onChange={onChange}
           onBlur={onBlur}
           value={value}
