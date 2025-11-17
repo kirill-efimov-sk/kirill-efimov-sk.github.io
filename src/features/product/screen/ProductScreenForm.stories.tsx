@@ -31,7 +31,7 @@ export const DefaultProductForm: Story = {
       id: uid(18),
       name: 'Имя продукта',
       description: 'Описание продукта',
-      category: 'Категория продукта',
+      categoryId: 'Категория продукта',
       price: 100,
       image: {
         url: '',

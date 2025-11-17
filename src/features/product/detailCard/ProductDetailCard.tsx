@@ -14,7 +14,7 @@ export const ProductDetailCard: FC<ProductDetailCardProps> = React.memo(
       <Card.Container type={'block'}>
         <Card.Image
           image={{
-            url: product.foto,
+            url: product.photo,
             title: 'Изображение товара',
           }}
         />
@@ -30,7 +30,7 @@ export const ProductDetailCard: FC<ProductDetailCardProps> = React.memo(
       </Card.Container>
     );
   },
-  (prev, next) => prev.cardId === next.cardId
+  (prev, next) => prev.cardId === next.cardId && prev.product === next.product
 );
 
 ProductDetailCard.displayName = 'ProductDetailCard';

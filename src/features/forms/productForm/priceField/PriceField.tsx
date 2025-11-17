@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import cn from 'clsx';
-import { InputNumber } from 'antd';
+import { InputNumber } from 'antd/lib';
 import { FormikHandlers } from 'formik/dist';
 import { useTranslation } from 'react-i18next';
 import { FormItem } from '../../../../shared/formItem';

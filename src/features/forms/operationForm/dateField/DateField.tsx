@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import cn from 'clsx';
 import dayjs, { Dayjs } from 'dayjs';
-import { DatePicker, Space } from 'antd';
+import { DatePicker, Space } from 'antd/lib';
 import { FormikHandlers } from 'formik/dist';
 import { useTranslation } from 'react-i18next';
 import { FormItem } from '../../../../shared/formItem';

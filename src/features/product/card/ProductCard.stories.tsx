@@ -9,7 +9,7 @@ const meta: Meta<typeof ProductCard> = {
     product: {
       id: 'string',
       name: 'string',
-      foto: 'string',
+      photo: 'string',
       desc: 'string',
       price: 'number',
       createdAt: 'string',
@@ -32,7 +32,8 @@ export const ProductCardComponent: Story = {
     product: {
       id: '100sgdfdgfsdwt4yhgdvscasd',
       name: 'Product name',
-      foto: 'https://sun9-78.userapi.com/impg/c856028/v856028314/1e0892/BfL4I39V-pU.jpg?size=484x704&quality=96&sign=1a77918b549f5f7f032b085182c198c4&type=album',
+      photo:
+        'https://sun9-78.userapi.com/impg/c856028/v856028314/1e0892/BfL4I39V-pU.jpg?size=484x704&quality=96&sign=1a77918b549f5f7f032b085182c198c4&type=album',
       desc: 'Product description (max 100 char)',
       price: 100,
       createdAt: '',

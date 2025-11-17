@@ -11,16 +11,28 @@ export interface ModalProps {
 
 export const Modal: FC<ModalProps> = ({ visible, onClose, children }): React.JSX.Element => {
   const { t } = useTranslation();
-  const handleBackgroundClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleInteractionStart = (e: React.MouseEvent | React.TouchEvent) => {
+    // Срабатывает при начале клика или тапа
     if (e.target === e.currentTarget) {
       onClose();
     }
   };
 
+  const handleBackgroundClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
   if (!visible) return null;
 
   return createPortal(
-    <div className={styles.modalOverlay} onClick={handleBackgroundClick} role="dialog">
+    <div
+      className={styles.modalOverlay}
+      onMouseDown={handleInteractionStart}
+      onTouchStart={handleInteractionStart}
+      onClick={handleBackgroundClick}
+      role="dialog"
+    >
       <div className={styles.modalContainer}>
         <button
           className={styles.modalCloseButton}

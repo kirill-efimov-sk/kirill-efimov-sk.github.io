@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import cn from 'clsx';
-import { Input } from 'antd';
+import { Input } from 'antd/lib';
 import { FormikHandlers } from 'formik/dist';
 import { useTranslation } from 'react-i18next';
 import { FormItem } from '../../../../shared/formItem';
@@ -26,18 +26,18 @@ export const CategoryField = memo<CategoryFieldProps>(
     return (
       <FormItem
         className={cn(styles.root, className)}
-        title={t('forms.ProductForm.category.title')}
+        title={t('forms.ProductForm.categoryId.title')}
         validateStatus={validateStatus}
         help={help}
       >
         <Input
           disabled={disabled}
           data-cy="input-category"
-          name="category"
+          name="categoryId"
           onChange={onChange}
           onBlur={onBlur}
           value={value}
-          placeholder={t('forms.ProductForm.category.placeholder')}
+          placeholder={t('forms.ProductForm.categoryId.placeholder')}
         />
       </FormItem>
     );

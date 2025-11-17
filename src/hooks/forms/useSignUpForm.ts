@@ -14,7 +14,7 @@ import { baseUrl, commandId } from 'src/app/constants/general';
 import { EMAIL_REGEX } from 'src/app/constants/regex';
 import { ApiErrorType } from 'src/app/store/rtq/authApi';
 import { fetchClient } from 'src/utils/fetch';
-import { AuthResult } from 'src/pages/authScreen/types';
+import { AuthResult } from 'src/app/store/rtq/types';
 import { profileActions } from 'src/app/store/slices/profile';
 
 export interface SignUpFormProps {

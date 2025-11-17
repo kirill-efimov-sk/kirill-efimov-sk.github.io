@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useCallback } from 'react';
 import cn from 'clsx';
 import { ProductFormProps } from './types';
 import { NameField } from './nameField';
@@ -8,13 +8,16 @@ import { PriceField } from './priceField/PriceField';
 import { ImageField } from './imageField';
 import styles from './productForm.module.scss';
 
-interface ExtendedOperationFormProps extends ProductFormProps {
-  selectedFile?: File | null;
-}
+export const ProductForm = memo<ProductFormProps>(
+  ({ className, formManager, formElement, autoFocusElement, disabled }) => {
+    const { values, touched, errors, submitCount, handleBlur, handleSubmit, handleChange, setFieldValue } = formManager;
 
-export const ProductForm = memo<ExtendedOperationFormProps>(
-  ({ className, formManager, formElement, autoFocusElement, disabled, onFileSelect, selectedFile }) => {
-    const { values, touched, errors, submitCount, handleBlur, handleSubmit, handleChange } = formManager;
+    const handleFileSelect = useCallback(
+      (file: File | null) => {
+        setFieldValue('file', file);
+      },
+      [setFieldValue]
+    );
 
     return (
       <form ref={formElement} onSubmit={handleSubmit} className={cn(styles.root, className)}>
@@ -40,10 +43,10 @@ export const ProductForm = memo<ExtendedOperationFormProps>(
         <CategoryField
           onBlur={handleBlur}
           onChange={handleChange}
-          value={values.category}
-          errors={errors.category}
+          value={values.categoryId}
+          errors={errors.categoryId}
           submitCount={submitCount}
-          touched={touched.category}
+          touched={touched.categoryId}
           disabled={disabled}
         />
         <PriceField
@@ -56,15 +59,14 @@ export const ProductForm = memo<ExtendedOperationFormProps>(
           disabled={disabled}
         />
         <ImageField
-          onFileSelect={onFileSelect}
-          onBlur={handleBlur}
+          onFileSelect={handleFileSelect}
+          onBlur={() => handleBlur('file')}
           onChange={handleChange}
-          value={values.image.url}
+          value={values.file}
           disabled={disabled}
-          errors={errors.image?.title}
-          touched={touched.image?.title}
+          errors={errors?.file?.name || ''}
+          touched={!!touched.file}
           submitCount={submitCount}
-          filename={selectedFile?.name}
         />
       </form>
     );

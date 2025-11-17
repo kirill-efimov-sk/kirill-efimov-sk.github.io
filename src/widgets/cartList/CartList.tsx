@@ -25,12 +25,16 @@ export const CartList: FC = () => {
     }
   }, [displayCount, cartStore]);
 
+  const hasMoreItems = displayCount < cartStore.length;
+
   return (
     <div className={styles.cart}>
       <Title className={`${styles.title}`}>{t('screens.CartScreen.list.title')}</Title>
       {((!products || products.length === 0) && (
         <span className={styles.cartListEmpty}>{t('screens.CartScreen.list.empty')}</span>
-      )) || <CartListRender products={products} onLoadMore={handleLoadMore}></CartListRender>}
+      )) || (
+        <CartListRender products={products} onLoadMore={handleLoadMore} hasMoreItems={hasMoreItems}></CartListRender>
+      )}
     </div>
   );
 };
