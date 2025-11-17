@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { commandId, baseUrl } from 'src/app/constants/general';
-import { AuthProps, AuthResult } from 'src/pages/authScreen/types';
+import { AuthPostData, AuthResult } from './types';
 import type { RootState } from '../index';
 
 export interface ApiErrorType {
@@ -26,7 +26,7 @@ export const authApi = createApi({
   }),
   tagTypes: ['Auth'],
   endpoints: (builder) => ({
-    signUp: builder.mutation<AuthResult, AuthProps>({
+    signUp: builder.mutation<AuthResult, AuthPostData>({
       query: (credentials) => ({
         url: '/signup',
         method: 'POST',
@@ -36,7 +36,7 @@ export const authApi = createApi({
         },
       }),
     }),
-    signIn: builder.mutation<AuthResult, AuthProps>({
+    signIn: builder.mutation<AuthResult, AuthPostData>({
       query: (credentials) => ({
         url: '/signin',
         method: 'POST',

@@ -19,7 +19,7 @@ export const ProductCard: FC<ProductCardProps> = React.memo(
     const { isVisible: isModalVisible, open: openOperationEditModal, close: handleCloseModal } = useModal();
     const truncatedText = useMemo(() => truncatingText(product.desc, 100), [product.desc]);
     const image = {
-      url: product.foto,
+      url: product.photo,
       title: 'Изображение товара',
     };
 
@@ -40,7 +40,7 @@ export const ProductCard: FC<ProductCardProps> = React.memo(
           <ProductScreenForm
             initialProduct={{
               id: product.id,
-              category: product.category.name,
+              categoryId: product.category.id,
               description: product.desc,
               name: product.name,
               price: product.price,

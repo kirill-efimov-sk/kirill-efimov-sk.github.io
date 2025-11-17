@@ -29,8 +29,7 @@
 }
 
 .imageContainer {
-  width: 142px;
-  height: 252px;
+  height: 150px;
   overflow: hidden;
   border-radius: 12px;
   flex-shrink: 0;
@@ -60,13 +59,14 @@
 }
 
 .name {
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: rgb(51, 51, 51);
   white-space: nowrap;
 }
 
 .description {
+  font-size: 0.85rem;
   color: rgb(102, 102, 102);
   height: 70px;
   max-height: 500px;
@@ -83,6 +83,7 @@
   display: flex;
   flex-direction: row;
   gap: 15px;
+  font-size: 0.9rem;
   font-weight: 700;
   color: rgb(44, 62, 80);
 }

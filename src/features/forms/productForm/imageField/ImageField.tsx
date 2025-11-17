@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react';
 import { InboxOutlined, DeleteOutlined } from '@ant-design/icons';
-import { Upload, Button } from 'antd';
+import { Upload, Button } from 'antd/lib';
 import type { UploadProps } from 'antd';
 import { FormikHandlers } from 'formik/dist';
 import { useTranslation } from 'react-i18next';
@@ -10,11 +10,11 @@ import { ProductFormProps, ProductFormFileSelect } from '../types';
 import styles from './imageField.module.scss';
 
 export type ImageUploadFieldProps = Pick<ProductFormProps, 'className' | 'disabled'> & {
-  value?: string;
+  value?: File | null;
   filename?: string;
   disabled?: boolean;
-  errors: string;
   touched: boolean;
+  errors: string;
   submitCount?: number;
   onFileSelect: ProductFormFileSelect;
   onChange: FormikHandlers['handleChange'];
@@ -45,7 +45,7 @@ export const ImageField = memo<ImageUploadFieldProps>(
         // Предотвращаем автоматическую загрузку
         return false;
       },
-      [onFileSelect, t]
+      [onFileSelect]
     );
 
     const handleRemove = () => {
@@ -54,7 +54,7 @@ export const ImageField = memo<ImageUploadFieldProps>(
     };
 
     const uploadProps: UploadProps = {
-      name: 'image',
+      name: 'file',
       multiple: false,
       showUploadList: false,
       disabled: disabled,
@@ -67,7 +67,7 @@ export const ImageField = memo<ImageUploadFieldProps>(
         <div className={styles.root}>
           {displayFile ? (
             <div className={styles.previewSection}>
-              <div>{displayFile}</div>
+              <div>{typeof displayFile === 'string' ? displayFile : displayFile?.name}</div>
               <Button
                 icon={<DeleteOutlined />}
                 onClick={handleRemove}

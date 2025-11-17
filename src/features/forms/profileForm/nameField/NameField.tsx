@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import cn from 'clsx';
-import { Input } from 'antd';
+import { Input } from 'antd/lib';
 import { FormikHandlers } from 'formik/dist';
 import { UserOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';

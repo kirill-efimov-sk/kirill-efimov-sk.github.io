@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { baseUrl } from 'src/app/constants/general';
-import { ProductPostParams, ProductPutParams, ProductPostResult } from 'src/pages/productsScreen/type';
+import { Filters, ProductPutParams, ProductPostData } from './types';
 import type { RootState } from '../index';
 
 export interface ApiErrorType {
@@ -19,38 +19,51 @@ export const productsApi = createApi({
         headers.set('authorization', `Bearer ${token}`);
       }
 
-      headers.set('content-type', 'application/json');
-
       return headers;
     },
   }),
   tagTypes: ['Products'],
   endpoints: (builder) => ({
     getProducts: builder.query({
-      query: () => ({
-        url: '/products',
-        method: 'Get',
-      }),
+      query: (filters: Filters = {}) => {
+        const queryParams = Object.entries(filters).reduce((params, [key, value]) => {
+          if (value === undefined || value === null) return params;
+
+          if (typeof value === 'string') {
+            params.append(key, value);
+          } else if (Array.isArray(value) && value.length > 0) {
+            params.append(key, JSON.stringify(value));
+          } else if (typeof value === 'object' && Object.keys(value).length > 0) {
+            params.append(key, JSON.stringify(value));
+          }
+
+          return params;
+        }, new URLSearchParams());
+
+        return {
+          url: `/products?${queryParams.toString()}`,
+          method: 'GET',
+        };
+      },
     }),
-    addProduct: builder.mutation<ProductPostResult, ProductPostParams>({
-      query: (product) => ({
+    addProduct: builder.mutation<ProductPostData, FormData>({
+      query: (formData) => ({
         url: '/products',
         method: 'POST',
-        body: {
-          ...product,
-        },
+        body: formData,
       }),
+      invalidatesTags: ['Products'],
     }),
-    editProduct: builder.mutation<ProductPostResult, ProductPutParams>({
-      query: ({ product, id }) => ({
-        url: `/products/:${id}`,
+    editProduct: builder.mutation<ProductPostData, ProductPutParams>({
+      query: ({ id, formData }) => ({
+        url: `/products/${id}`,
         method: 'PUT',
-        body: {
-          ...product,
-        },
+        body: formData,
       }),
+      invalidatesTags: ['Products'],
     }),
   }),
 });
 
-export const { useGetProductsQuery, useAddProductMutation, useEditProductMutation } = productsApi;
+export const { useGetProductsQuery, useLazyGetProductsQuery, useAddProductMutation, useEditProductMutation } =
+  productsApi;

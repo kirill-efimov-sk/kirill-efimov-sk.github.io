@@ -1,24 +1,23 @@
 .button {
   min-height: 30px;
-  padding: 0 11px;
+  padding: 10px 20px;
+  background-color: #3c8fe9fd;
+  color: white;
   border: 1px solid rgb(159, 159, 159);
   border-radius: 8px;
-  background-color: rgba(241, 241, 241, 0.65);
   transition: all 0.2s ease;
   text-align: center;
   letter-spacing: 0.5px;
   cursor: pointer;
 
-  &:hover {
-    background-color: rgba(207, 207, 207, 0.747);
+  &:hover:not(:disabled) {
+    background-color: #0056b3;
   }
 
   &:disabled {
-    cursor: default;
-  }
-
-  &:disabled:hover {
-    background-color: rgba(241, 241, 241, 0.65);
+    background-color: rgb(155 155 155);
+    cursor: not-allowed;
+    opacity: 0.6;
   }
 
   &:active {

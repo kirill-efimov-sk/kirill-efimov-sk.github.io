@@ -26,7 +26,7 @@ type Profit = {
 export type Product = {
   id: string;
   name: string;
-  foto: string;
+  photo: string;
   desc?: string;
   createdAt: string;
   oldPrice?: number;
@@ -100,9 +100,9 @@ const getRandomProduct = (): Omit<Product, 'id' | 'createdAt'> => {
   const name = `${product.value}, артикул: ${createRandomArticle()}`;
   const price = Math.round(Math.random() * priceMultiplier);
   const oldPrice = Math.round(price + price * 0.1);
-  const foto = generateFotoUrl();
+  const photo = generateFotoUrl();
 
-  return { ...product, name, foto, price, oldPrice };
+  return { ...product, name, photo, price, oldPrice };
 };
 
 /**
@@ -110,12 +110,12 @@ const getRandomProduct = (): Omit<Product, 'id' | 'createdAt'> => {
  * Принимает дату создания (строка)
  * */
 export const createRandomProduct = (createdAt: string): Product => {
-  const { name, foto, desc, oldPrice, price, category } = getRandomProduct();
+  const { name, photo, desc, oldPrice, price, category } = getRandomProduct();
 
   return {
     id: generateId(),
     name,
-    foto,
+    photo,
     desc,
     createdAt,
     oldPrice,

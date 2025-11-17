@@ -8,12 +8,14 @@ import styles from './cartList.module.scss';
 interface CartListRenderProps {
   products: CartProductItemProps[];
   onLoadMore: () => void;
+  hasMoreItems?: boolean;
 }
 
-export const CartListRender: FC<CartListRenderProps> = ({ products, onLoadMore }) => {
+export const CartListRender: FC<CartListRenderProps> = ({ products, onLoadMore, hasMoreItems }) => {
   const { isLoading, observerTarget } = useIntersactionObserverScroll({
     onLoadMore,
     delay: 250,
+    hasMoreItems,
   });
 
   const memoizedCartItems = useMemo(() => {
@@ -23,7 +25,7 @@ export const CartListRender: FC<CartListRenderProps> = ({ products, onLoadMore }
           key={product.id}
           cardId={product.id}
           image={{
-            url: product.foto,
+            url: product.photo,
             title: 'Изображение товара',
           }}
           price={product.price}

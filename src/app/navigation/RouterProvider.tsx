@@ -9,7 +9,7 @@ export interface RouterProviderProps {
 
 export const RouterProvider: FC<RouterProviderProps> = ({ children }) => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={'/'}>
       {children}
       <Routes>
         <Route path="/auth/*" element={<AuthScreen />} />

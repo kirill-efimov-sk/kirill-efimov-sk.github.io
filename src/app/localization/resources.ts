@@ -21,6 +21,7 @@ export const resources = {
         password_not_match: 'The passwords do not match',
         password_to_small: 'The password must contain at least 8 characters',
         invalid_email: 'Invalid username format, missing mail',
+        invalid_request: 'Error request',
       },
       modal: {
         close: 'Close',
@@ -51,6 +52,21 @@ export const resources = {
             placeholder: 'Write something about yourself',
           },
         },
+        CategoryForm: {
+          name: {
+            title: 'Name',
+            placeholder: 'Categorie name',
+          },
+          image: {
+            title: 'Image',
+            placeholder: 'Categorie image',
+            upload: {
+              text: 'Click or drag a file to add',
+              hint: 'The file must not exceed 5MB.',
+              remove: 'Delete file',
+            },
+          },
+        },
         OperationForm: {
           category: {
             title: 'Сategory',
@@ -74,9 +90,9 @@ export const resources = {
           },
         },
         ProductForm: {
-          category: {
-            title: 'Сategory',
-            placeholder: 'Product category',
+          categoryId: {
+            title: 'Сategory id',
+            placeholder: 'Product category id',
           },
           description: {
             title: 'Description',
@@ -145,6 +161,18 @@ export const resources = {
             save: 'Change',
           },
         },
+        CategoryScreen: {
+          title: 'Category data',
+          edit: {
+            title: 'Category information',
+            success: 'Information saved successfully',
+            save: 'Save',
+            button: {
+              name: 'Edit',
+              title: 'Edit category information',
+            },
+          },
+        },
         OperationScreen: {
           title: 'Operation data',
           edit: {
@@ -158,6 +186,7 @@ export const resources = {
           },
           list: {
             title: 'Operations list',
+            empty: `Your operation is empty. Add the operations you are interested in.`,
           },
         },
         ProductScreen: {
@@ -169,6 +198,7 @@ export const resources = {
             button: {
               name: 'Edit',
               title: 'Edit product information',
+              empty: `Your product list is empty. Add the products you are interested in.`,
             },
           },
           list: {
@@ -198,6 +228,10 @@ export const resources = {
               name: 'Generate 5 random products (mocks)',
               title: 'Generate random products',
             },
+            addNewCategorieItem: {
+              name: 'Adding a product categorie',
+              title: 'Adding a new product categorie',
+            },
             addNewOperationItem: {
               name: 'Adding an operation',
               title: 'Adding a new operation',
@@ -205,6 +239,19 @@ export const resources = {
             addNewProductItem: {
               name: 'Adding a product',
               title: 'Adding a new product',
+            },
+          },
+          categories: {
+            title: 'Category editor',
+            list: {
+              empty: 'Category is empty',
+              loading: 'Loading...',
+              error: 'Error executing request',
+            },
+            selectCategory: 'Choose a category',
+            buttons: {
+              edit: 'Edit',
+              refresh: 'Refresh',
             },
           },
           messages: {
@@ -235,6 +282,7 @@ export const resources = {
         password_not_match: 'Пароли не совпадают',
         password_to_small: 'Пароль должен содержать минимум 8 символов',
         invalid_email: 'Неверный формат имени пользователя, отсутствует почта',
+        invalid_request: 'Ошибка запроса',
       },
       modal: {
         close: 'Закрыть',
@@ -265,6 +313,21 @@ export const resources = {
             placeholder: 'Напишите что-нибудь о себе',
           },
         },
+        CategoryForm: {
+          name: {
+            title: 'Наименование',
+            placeholder: 'Наименование категории',
+          },
+          image: {
+            title: 'Изображение',
+            placeholder: 'Изображение продукта',
+            upload: {
+              text: 'Кликните или перетащите файл, чтобы добавить',
+              hint: 'Файл не должен превышать 5МБ',
+              remove: 'Удалить файл',
+            },
+          },
+        },
         OperationForm: {
           category: {
             title: 'Категория',
@@ -288,9 +351,9 @@ export const resources = {
           },
         },
         ProductForm: {
-          category: {
-            title: 'Категория',
-            placeholder: 'Категория продукта',
+          categoryId: {
+            title: 'Идентификатор категории',
+            placeholder: 'Идентификатор категории продукта',
           },
           description: {
             title: 'Детализация',
@@ -359,6 +422,18 @@ export const resources = {
             save: 'Изменить',
           },
         },
+        CategoryScreen: {
+          title: 'Данные о категории',
+          edit: {
+            title: 'Информация о категории',
+            success: 'Информация успешно сохранена',
+            save: 'Сохранить',
+            button: {
+              name: 'Редактировать',
+              title: 'Редактировать информацию о категории',
+            },
+          },
+        },
         OperationScreen: {
           title: 'Данные об операции',
           edit: {
@@ -372,6 +447,7 @@ export const resources = {
           },
           list: {
             title: 'Список операций',
+            empty: 'Список операций пуст. Добавьте интересующие Вас операции',
           },
         },
         ProductScreen: {
@@ -387,6 +463,7 @@ export const resources = {
           },
           list: {
             title: 'Список товаров',
+            empty: 'Список товаров пуст. Добавьте интересующие Вас товары',
           },
         },
         CartScreen: {
@@ -412,13 +489,30 @@ export const resources = {
               name: 'Генерация 5 случайных продуктов (моки)',
               title: 'Генерация случайных продуктов',
             },
+            addNewCategorieItem: {
+              name: 'Добавить категорию товара',
+              title: 'Добавление новой категории товара',
+            },
             addNewOperationItem: {
-              name: 'Добавление операции',
+              name: 'Добавить операцию',
               title: 'Добавление новой операции',
             },
             addNewProductItem: {
-              name: 'Добавление товара',
+              name: 'Добавить товар',
               title: 'Добавление нового товара',
+            },
+          },
+          categories: {
+            title: 'Редактор категорий',
+            list: {
+              empty: 'Категории не найдены',
+              loading: 'Загрузка...',
+              error: 'Ошибка при выполнении запроса',
+            },
+            selectCategory: 'Выберите категорию',
+            buttons: {
+              edit: 'Редактировать',
+              refresh: 'Обновить',
             },
           },
           messages: {

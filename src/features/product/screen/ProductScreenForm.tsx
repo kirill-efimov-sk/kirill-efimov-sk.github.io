@@ -1,5 +1,5 @@
 // OperationScreenForm.tsx
-import React, { useState } from 'react';
+import React from 'react';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { Button } from 'antd';
@@ -11,7 +11,7 @@ import styles from './productScreenForm.module.scss';
 
 const initialItem = {
   id: '',
-  category: '',
+  categoryId: '',
   description: '',
   name: '',
   price: 0,
@@ -24,30 +24,21 @@ export interface ProductFormProps {
 }
 
 export const ProductScreenForm: React.FC<ProductFormProps> = ({ initialProduct = initialItem, closeModal }) => {
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const { t } = useTranslation();
-  const { initialValues, onSubmit, validate, loading } = useProductForm({
-    initialProduct,
-  });
+  const { initialValues, onSubmit, validate, loading } = useProductForm({ initialProduct });
 
   const formManager = useFormik<ProductFormValues>({
     initialValues,
     onSubmit: async (values, helpers) => {
       try {
-        if (selectedFile) {
-          values.file = selectedFile;
-        }
-
         // Вызываем оригинальный onSubmit
         await onSubmit(values, helpers);
+
+        if (closeModal) closeModal();
       } catch (error) {
         console.error('Form submission error:', error);
-        helpers.setSubmitting(false);
-
         return;
       }
-
-      if (closeModal) closeModal();
     },
     validate,
     enableReinitialize: true,
@@ -58,7 +49,7 @@ export const ProductScreenForm: React.FC<ProductFormProps> = ({ initialProduct =
   return (
     <div className={styles.container}>
       <Title className={styles.title}>{t('screens.ProductScreen.edit.title')}</Title>
-      <UserForms.ProductForm formManager={formManager} onFileSelect={setSelectedFile} selectedFile={selectedFile} />
+      <UserForms.ProductForm formManager={formManager} />
       <Button type="primary" onClick={submitForm} loading={loading || isSubmitting}>
         {t('screens.ProductScreen.edit.save')}
       </Button>

@@ -12,9 +12,6 @@ export const Navigation: FC = () => {
   return (
     <div className={styles.navigate}>
       <div className={styles.navigateLeft}>
-        <NavLink to="/operations" className={({ isActive }) => (isActive ? styles.active : '')}>
-          <span className={styles.name}>{t('header.routes.operations')}</span>
-        </NavLink>
         <NavLink to="/products" className={({ isActive }) => (isActive ? styles.active : '')}>
           <span className={styles.name}>{t('header.routes.products')}</span>
         </NavLink>

@@ -68,7 +68,7 @@ export const useOperationForm = (
         await new Promise((resolve) => setTimeout(resolve, 1000));
         message.success(t('screens.OperationScreen.edit.success'));
       } catch (error) {
-        message.error(t('screens.OperationScreen.edit.error'));
+        message.error(t('errors.invalid_request'));
         throw error;
       } finally {
         setLoading(false);
